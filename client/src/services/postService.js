@@ -6,7 +6,7 @@ export const getAll = async () => {
         const result = await response.json();
 
         const data = Object.values(result);
-        
+
         return data;
     } catch (error) {
         console.log(error);
