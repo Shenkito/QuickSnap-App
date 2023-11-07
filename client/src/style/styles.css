@@ -3,14 +3,16 @@
 /* Global styles for your app */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f7f7f7;
+    /* Light gray background */
     margin: 0;
     padding: 0;
 }
 
 /* Navigation bar styles with hover effect and matching color */
 .navbar {
-    background-color: #333;
+    background-color: #1a1a1a;
+    /* Dark gray background */
     color: #fff;
     padding: 10px 0;
 }
@@ -41,12 +43,14 @@ body {
 
 /* Change color to match the "Get Started" button on hover */
 .navbar li:hover a {
-    color: #ff8800;
+    color: #ff5500;
+    /* Highlight color */
 }
 
 /* Page header styles */
 .welcome-section {
     background-color: #007acc;
+    /* Deep blue background */
     color: #fff;
     padding: 40px;
     text-align: center;
@@ -69,7 +73,8 @@ body {
 }
 
 .button {
-    background-color: #ff6600;
+    background-color: #ff5500;
+    /* Highlight color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -81,7 +86,8 @@ body {
 }
 
 .button:hover {
-    background-color: #ff8800;
+    background-color: #ff7700;
+    /* Slight color change on hover */
     transform: scale(1.05);
 }
 
@@ -149,7 +155,8 @@ body {
 }
 
 .edit-button {
-    background-color: #ff6600;
+    background-color: #ff5500;
+    /* Highlight color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -160,7 +167,8 @@ body {
 }
 
 .edit-button:hover {
-    background-color: #ff8800;
+    background-color: #ff7700;
+    /* Slight color change on hover */
     transform: scale(1.05);
 }
 
@@ -230,8 +238,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    /* Match the global background color */
+    background-color: #f7f7f7;
+    /* Light gray background */
 }
 
 .login-form {
@@ -243,19 +251,17 @@ body {
     width: 300px;
     padding: 20px;
     margin: 0 auto;
-    /* Center the form horizontally */
     display: flex;
     flex-direction: column;
-    /* Center form elements vertically */
     justify-content: center;
-    /* Center form elements horizontally */
+    align-items: center;
+    /* Center form elements both vertically and horizontally */
 }
 
 .login-form h2 {
     font-size: 24px;
     color: #333;
     margin: 0 0 20px;
-    /* Add margin to separate the title from form fields */
 }
 
 .form-group {
@@ -288,7 +294,8 @@ input {
 }
 
 .login-button {
-    background-color: #ff6600;
+    background-color: #ff5500;
+    /* Highlight color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -301,7 +308,8 @@ input {
 }
 
 .login-button:hover {
-    background-color: #ff8800;
+    background-color: #ff7700;
+    /* Slight color change on hover */
     transform: scale(1.05);
 }
 
@@ -311,17 +319,20 @@ input {
 }
 
 .register-link a {
-    color: #ff6600;
+    color: #ff5500;
+    /* Highlight color */
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .register-link a:hover {
-    color: #ff8800;
+    color: #ff7700;
+    /* Slight color change on hover */
 }
 
 .post-button {
-    background-color: #ff6600;
+    background-color: #ff5500;
+    /* Highlight color */
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -336,12 +347,14 @@ input {
 }
 
 .post-button:hover {
-    background-color: #ff8800;
+    background-color: #ff7700;
+    /* Slight color change on hover */
     transform: scale(1.05);
 }
 
 .footer {
-    background-color: #333;
+    background-color: #1a1a1a;
+    /* Dark gray background */
     color: #fff;
     text-align: center;
     padding: 10px 0;
@@ -357,8 +370,8 @@ input {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    /* Match the global background color */
+    background-color: #f7f7f7;
+    /* Light gray background */
 }
 
 .register-form {
@@ -370,19 +383,17 @@ input {
     width: 300px;
     padding: 20px;
     margin: 0 auto;
-    /* Center the form horizontally */
     display: flex;
     flex-direction: column;
-    /* Center form elements vertically */
     justify-content: center;
-    /* Center form elements horizontally */
+    align-items: center;
+    /* Center form elements both vertically and horizontally */
 }
 
 .register-form h2 {
     font-size: 24px;
     color: #333;
     margin: 0 0 20px;
-    /* Add margin to separate the title from form fields */
 }
 
 .form-group {
@@ -415,7 +426,8 @@ input {
 }
 
 .login-button {
-    background-color: #ff6600;
+    background-color: #ff5500;
+    /* Highlight color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -428,7 +440,8 @@ input {
 }
 
 .login-button:hover {
-    background-color: #ff8800;
+    background-color: #ff7700;
+    /* Slight color change on hover */
     transform: scale(1.05);
 }
 
@@ -438,12 +451,81 @@ input {
 }
 
 .login-link a {
-    color: #ff6600;
+    color: #ff5500;
+    /* Highlight color */
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .login-link a:hover {
-    color: #ff8800;
+    color: #ff7700;
+    /* Slight color change on hover */
 }
 
+.post-form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Center form elements both vertically and horizontally */
+    margin-top: 20px;
+}
+
+.post-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 0 0 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Adjust the submit button for the NewPostForm component */
+.post-button {
+    background-color: #ff5500;
+    /* Highlight color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+}
+
+.post-button:hover {
+    background-color: #ff7700;
+    /* Slight color change on hover */
+    transform: scale(1.05);
+}
