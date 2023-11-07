@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 
-import NavBar from './components/NavBar'
+import NavBar from './components/main/NavBar'
+import Footer from './components/main/Footer'
 import HomePage from './pages/Home'
 import LoginPage from './pages/Login'
 import RegisterPage from './pages/Register'
 import ProfilePage from './pages/Profile'
-import Footer from './components/Footer'
 
 function App() {
 

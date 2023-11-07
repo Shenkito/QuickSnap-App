@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import * as postService from "../services/postService";
+import * as postService from "../../services/postService";
 
 export default function LatestPosts() {
 
