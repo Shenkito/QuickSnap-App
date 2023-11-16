@@ -1,11 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 
-import NavBar from './components/NavBar/NavBar'
+import NavBar from './components/nav-bar/NavBar'
 
 import Home from './pages/Home/Home'
+import Posts from './pages/Posts/Posts'
 import Add from './pages/Add/Add'
 
-import Footer from './components/Footer/Footer'
+import Footer from './components/footer/Footer'
 
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path='/posts' element={<Posts />} />
                 <Route path="/add" element={<Add />} />
             </Routes>
             <Footer />

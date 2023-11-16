@@ -1,5 +1,5 @@
-import Hero from '../../components/Hero/Hero';
-import Main from '../../components/Main/Main';
+import Hero from '../../components/hero/Hero';
+import Main from '../../components/main/Main';
 
 import './Home.css';
 

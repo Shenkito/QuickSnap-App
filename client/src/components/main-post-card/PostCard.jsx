@@ -1,6 +1,6 @@
-import './Post.css'
+import './PostCard.css'
 
-export default function Post() {
+export default function PostCard() {
     return (
         <div className="col">
             <div className="card h-100">
