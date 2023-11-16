@@ -4,6 +4,7 @@ import PostCard from '../main-post-card/PostCard';
 
 import './Main.css'
 
+
 export default function Main() {
 
     const [showLatest, setShowLatest] = useState(false);
