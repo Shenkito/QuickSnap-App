@@ -1,0 +1,29 @@
+ul.nav.nav-underline {
+    display: flex;
+    justify-content: center;
+    padding: 2px 0;
+    margin: 0;
+    /* background-color: blueviolet; */
+}
+
+li.nav-item {
+    margin: 0 0px;
+    /* Adjust margin between nav items */
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-item a.nav-link {
+    text-decoration: none;
+    padding: 8px 16px;
+    /* Adjust padding for better click area */
+    color: white;
+}
+
+.nav-link:hover {
+    background-color: cornflowerblue;
+}
+
+.nav-item:hover {
+    transform: translateY(-2px);
+    /* Add a slight lift effect on hover */
+}

@@ -1,0 +1,18 @@
+.main-div {
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://kevdees.com/wp-content/uploads/2020/07/b_xciwkk8pc-scaled.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 20px;
+    margin: 0;
+    /* Reset default margin */
+    padding: 0;
+    /* Reset default padding */
+}

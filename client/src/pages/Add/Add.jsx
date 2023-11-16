@@ -1,4 +1,6 @@
-export default function AddPage() {
+import './Add.css'
+
+export default function Add() {
     return (
         <div className="add-container">
             <form className="post-form">
@@ -29,7 +31,7 @@ export default function AddPage() {
                         placeholder="Enter your name"
                     />
                 </div>
-                <button className="post-button" type="submit">Submit Post</button>
+                <button className="post-button" type="submit">SUBMIT</button>
             </form>
         </div>
     );
