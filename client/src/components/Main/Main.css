@@ -93,8 +93,7 @@
     justify-content: center;
     margin-bottom: 20px;
     font-size: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: bold;
 }
