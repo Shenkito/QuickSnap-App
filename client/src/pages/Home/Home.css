@@ -1,6 +1,8 @@
 .home {
-    padding: 0rem;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+    /* Add additional styles as needed */
 }
