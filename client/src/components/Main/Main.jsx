@@ -17,12 +17,12 @@ export default function Main() {
     }, []);
 
     return (
-        <div className="element">
+        <section className="element">
             <h1 className={showLatest ? 'latest show' : 'latest'}>Latest Posts</h1>
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 <Post />
                 {/* Add more cards in similar structure */}
             </div>
-        </div>
+        </section>
     );
 }
