@@ -1,3 +1,5 @@
+/* Login.css */
+
 .add-container {
     display: flex;
     flex-direction: column;
@@ -14,7 +16,6 @@
     border: 3px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); */
     background-color: #fff;
 }
 
@@ -28,7 +29,6 @@
 .form-group {
     margin-bottom: 20px;
     text-align: center;
-    /* Centering the content within the form-group */
 }
 
 .form-group label {
@@ -39,17 +39,16 @@
 }
 
 .form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
 .form-group textarea {
     width: calc(100% - 40px);
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    /* transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); */
     margin: 0 auto;
-    /* Centering the input fields within the form-group */
     display: block;
-    /* Ensuring input fields span the full width */
 }
 
 .form-group textarea {
@@ -67,7 +66,6 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
     display: block;
     margin: 0 auto;
-    /* Centering the button within the form */
 }
 
 .post-button:hover {
