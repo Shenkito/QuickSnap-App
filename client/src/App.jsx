@@ -5,6 +5,7 @@ import NavBar from './components/nav-bar/NavBar'
 import Home from './pages/Home/Home'
 import Posts from './pages/Posts/Posts'
 import Add from './pages/Add/Add'
+import Login from './pages/Login/Login'
 
 import Footer from './components/footer/Footer'
 
@@ -18,8 +19,9 @@ function App() {
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path='/posts' element={<Posts />} />
+                <Route path="/posts" element={<Posts />} />
                 <Route path="/add" element={<Add />} />
+                <Route path="/login" element={<Login />} /> 
             </Routes>
             <Footer />
         </div>
