@@ -2,13 +2,21 @@ import { useForm } from '../../hooks/useForm';
 
 import './Login.css'
 
-export default function Login() {
+//Upgrade
+const LoginFormKeys = {
+    Email: 'email',
+    Password: 'password'
+}
+
+export default function Login({
+    loginSubmitHandler,
+}) {
     
     
-    const { values, onChange, onSubmit } = useForm({ // Custom Hook -> controlled form (see bellow inputs)
+    const { values, onChange, onSubmit } = useForm(loginSubmitHandler,{ // Custom Hook -> controlled form (see bellow inputs)
         //When mount those are the initial values
-        email: '',
-        password: '',
+        [LoginFormKeys.Email]: '',
+        [LoginFormKeys.Password]: '',
     });
 
     return (
@@ -20,10 +28,10 @@ export default function Login() {
                     <input
                         type="text"
                         id="email"
-                        name="email"
+                        name={LoginFormKeys.Email}
                         placeholder="Enter your email"
                         onChange={onChange}
-                        value={values.email}
+                        value={values[LoginFormKeys.Email]}
                     />
                 </div>
                 <div className="form-group">
@@ -31,13 +39,13 @@ export default function Login() {
                     <input
                         type="password"
                         id="password"
-                        name="password"
+                        name={LoginFormKeys.Password}
                         placeholder="Enter your password"
                         onChange={onChange}
-                        value={values.password}
+                        value={values[LoginFormKeys.Password]}
                     />
                 </div>
-                <button className="login-button" type="submit" onSubmit={onSubmit}>LOGIN</button>
+                <button className="login-button" type="submit">LOGIN</button>
                 <p>If you are not registered,  <a href="/register" className="register-link">click here</a> to register. </p>
             </form>
         </div>
