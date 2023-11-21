@@ -3,7 +3,7 @@ import { useState } from "react"
 // The custom hook for forms (for example see Login)
 
 export function useForm(submitHandler, initialValues) {
-    const [values, setValues] =  useState({initialValues});
+    const [values, setValues] =  useState(initialValues);
 
     const onChange = (e) => {
         setValues(state => ({
