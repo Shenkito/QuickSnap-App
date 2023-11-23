@@ -58,7 +58,7 @@ export default function Login() {
             <form className="login-form" onSubmit={submitHandler}>
                 <h2>Login</h2>
                 <div className="form-group">
-                    <label htmlFor="username">Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                         type="text"
                         id="email"
