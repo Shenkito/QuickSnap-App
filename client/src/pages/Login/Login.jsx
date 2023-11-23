@@ -1,4 +1,7 @@
-import { useForm } from '../../hooks/useForm';
+// import { useForm } from '../../hooks/useForm';
+import { useState } from 'react';
+
+import { login } from '../../services/userService';
 
 import './Login.css'
 
@@ -8,20 +11,51 @@ const LoginFormKeys = {
     Password: 'password'
 }
 
-export default function Login({
-    loginSubmitHandler,
-}) {
-    
-    
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler,{ // Custom Hook -> controlled form (see bellow inputs)
-        //When mount those are the initial values
+export default function Login() {
+
+    const [values, setValues] = useState({
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     });
 
+    const inputChangeHandler = (e) => {
+        const {name, value} = e.target;
+        setValues({
+            ...values,
+            [name]: value,
+        });
+    };
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const user = await login(values);
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+        }
+    } 
+    
+    //With useForm
+    // const loginSubmitHandler = async (data) => {
+    //     try{
+    //         const user = await login(data);
+    //         console.log(user);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+    
+    // const { values, onChange, onSubmit } = useForm(loginSubmitHandler,{ // Custom Hook -> controlled form (see bellow inputs)
+    //     //When mount those are the initial values
+    //     [LoginFormKeys.Email]: '',
+    //     [LoginFormKeys.Password]: '',
+    // });
+
     return (
         <div className="login-container">
-            <form className="login-form" onSubmit={onSubmit}>
+            <form className="login-form" onSubmit={submitHandler}>
                 <h2>Login</h2>
                 <div className="form-group">
                     <label htmlFor="username">Email:</label>
@@ -30,7 +64,7 @@ export default function Login({
                         id="email"
                         name={LoginFormKeys.Email}
                         placeholder="Enter your email"
-                        onChange={onChange}
+                        onChange={inputChangeHandler}
                         value={values[LoginFormKeys.Email]}
                     />
                 </div>
@@ -41,7 +75,7 @@ export default function Login({
                         id="password"
                         name={LoginFormKeys.Password}
                         placeholder="Enter your password"
-                        onChange={onChange}
+                        onChange={inputChangeHandler}
                         value={values[LoginFormKeys.Password]}
                     />
                 </div>
