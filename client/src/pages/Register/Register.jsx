@@ -1,21 +1,54 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { register } from '../../services/userService';
 
 import './Register.css'
 
+const RegisterFormKeys = {
+    Email: 'email',
+    Password: 'password',
+    ConfirmPassword: 'confirmPassword'
+}
+
 export default function Register() {
 
+    const [values, setValues] = useState({
+        [RegisterFormKeys.Email]: '',
+        [RegisterFormKeys.Password]: '',
+        [RegisterFormKeys.ConfirmPassword]: '',
+    });
+
+    const inputChangeHandler = (e) => {
+        const {name, value} = e.target;
+        setValues({
+            ...values,
+            [name]: value,
+        });
+    };
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const user = await register(values);
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+        }
+    } 
 
     return (
         <div className="register-container">
-            <form className="register-form">
+            <form className="register-form" onSubmit={submitHandler}>
                 <h2>Register</h2>
                 <div className="register-group">
                     <label htmlFor="email">Email:</label>
                     <input
                         type="text"
                         id="email"
-                        name="email"
+                        name={RegisterFormKeys.Email}
                         placeholder="Enter your email"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.Email]}
                     />
                 </div>
                 <div className="register-group">
@@ -23,8 +56,10 @@ export default function Register() {
                     <input
                         type="password"
                         id="password"
-                        name="password"
+                        name={RegisterFormKeys.Password}
                         placeholder="Enter your password"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.Password]}
                     />
                 </div>
                 <div className="register-group">
@@ -32,8 +67,10 @@ export default function Register() {
                     <input
                         type="password"
                         id="confirmPassword"
-                        name="confirmPassword"
+                        name={RegisterFormKeys.ConfirmPassword}
                         placeholder="Confirm your password"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.ConfirmPassword]}
                     />
                 </div>
                 <button className="register-button" type="submit">
