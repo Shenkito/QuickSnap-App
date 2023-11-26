@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { register } from '../../services/userService';
+
+import * as userService from '../../services/userService';
 
 import './Register.css'
 
@@ -29,7 +30,7 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const user = await register(values);
+            const user = await userService.register(values);
             console.log(user);
         } catch (error) {
             console.log(error);
