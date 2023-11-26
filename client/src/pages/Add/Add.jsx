@@ -6,6 +6,7 @@ import * as postService from '../../services/postService';
 import './Add.css'
 
 const addFormKeys = {
+    ImageUrl: 'imageUrl',
     Title: 'title',
     Content: 'content',
     Author: 'author'
@@ -16,6 +17,7 @@ export default function Add() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
+        [addFormKeys.ImageUrl]: '',
         [addFormKeys.Title]: '',
         [addFormKeys.Content]: '',
         [addFormKeys.Author]: '',
@@ -44,6 +46,17 @@ export default function Add() {
         <div className="add-container">
             <form className="post-form" onSubmit={submitHandler}>
                 <h2>Add New Post</h2>
+                <div className="form-group">
+                    <label htmlFor="imageUrl">Image URL:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="imageUrl"
+                        name="imageUrl"
+                        value={formData[addFormKeys.ImageUrl]}
+                        onChange={inputChangeHandler}
+                    />
+                </div>
                 <div className="form-group">
                     <label htmlFor="post-title">Title:</label>
                     <input
