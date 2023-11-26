@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 import * as postService from '../../services/postService';
 
@@ -11,6 +12,8 @@ const addFormKeys = {
 }
 
 export default function Add() {
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         [addFormKeys.Title]: '',
@@ -31,7 +34,7 @@ export default function Add() {
         
         try {
             const post = await postService.create(formData);
-            console.log(post);
+            navigate('/posts');
         } catch (error) {
             console.log(error);
         }
