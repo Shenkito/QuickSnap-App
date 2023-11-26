@@ -1,8 +1,9 @@
-const loginUrl = 'http://localhost:3030/users/login'
+const baseUrl = 'http://localhost:3030/users'
 
-export async function login(email, password) {
+export const login = async (email, password) => {
+    
     try {
-        const response = await fetch(loginUrl, {
+        const response = await fetch(`${baseUrl}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -10,19 +11,19 @@ export async function login(email, password) {
             body: JSON.stringify(email, password), 
         });
 
+
         if(!response.ok) {
             throw new Error('Login failed')
         }
 
-        return await response.json();
+        const result = await response.json();
+        return result
     } catch (err) {
         console.log(err);
     }
 }
 
-const registerUrl = 'http://localhost:3030/users/register'
-
-export async function register(email, password) {
+export const register = async (email, password) => {
     try {
 
         // const requestBody = {
@@ -31,7 +32,7 @@ export async function register(email, password) {
         //     // You can add other properties here if required
         // };
 
-        const response = await fetch(registerUrl, {
+        const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,8 +44,9 @@ export async function register(email, password) {
             throw new Error('Registration failed')
         }
         
-        const data = await response.json();
-        return data;
+        const result = await response.json();
+
+        return result
     } catch (err) {
         console.log(err);
     }

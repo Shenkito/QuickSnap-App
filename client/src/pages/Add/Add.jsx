@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import * as postService from '../../services/postService';
+
 import './Add.css'
 
 const addFormKeys = {
@@ -23,9 +26,15 @@ export default function Add() {
         });
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        
+        try {
+            const post = await postService.create(formData);
+            console.log(post);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
