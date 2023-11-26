@@ -1,7 +1,7 @@
 // import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
 
-import { login } from '../../services/userService';
+import * as userService from '../../services/userService';
 
 import './Login.css'
 
@@ -30,7 +30,7 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const user = await login(values);
+            const user = await userService.login(values);
             console.log(user);
         } catch (error) {
             console.log(error);
