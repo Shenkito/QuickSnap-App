@@ -12,7 +12,7 @@ export default function NavBar() {
                 <Link className="nav-link" to="/posts">All Posts</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/add">Add Post</Link>
+                <Link className="nav-link" to="/posts/add">Add Post</Link>
             </li>
             <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
