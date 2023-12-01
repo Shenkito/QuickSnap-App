@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 
 import * as postService from '../../services/postService';
 
-import PostCard from '../../components/main-post-card/PostCard';
+import PostCard from '../../components/post-card/PostCard';
 
 import './Posts.css'
 
 export default function Posts() {
+
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -40,12 +41,12 @@ export default function Posts() {
             <div className="post-cards">
                 {Array.isArray(posts) && posts.length > 0 ? (
                     posts.map((post) => (
-                        <PostCard
-                            key={post._id} // Assuming post._id is the unique identifier
-                            imageUrl={post.imageUrl}
-                            title={post.title}
-                            content={post.content}
-                            author={post.author}
+                        <PostCard key={post._id} {...post}
+                        // key={post._id} // Assuming post._id is the unique identifier
+                        // imageUrl={post.imageUrl}
+                        // title={post.title}
+                        // content={post.content}
+                        // author={post._ownerId}
                         />
                     ))
                 ) : (
