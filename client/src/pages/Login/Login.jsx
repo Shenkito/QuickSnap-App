@@ -1,5 +1,6 @@
 // import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/userService';
 
@@ -13,13 +14,15 @@ const LoginFormKeys = {
 
 export default function Login() {
 
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     });
 
     const inputChangeHandler = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setValues({
             ...values,
             [name]: value,
@@ -30,13 +33,20 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const user = await userService.login(values);
-            console.log(user);
+            const user = await userService.login({
+                email: values[LoginFormKeys.Email],
+                password: values[LoginFormKeys.Password],
+            });
+
+            // Serialize and store the user data after successful login
+            localStorage.setItem('user', userService.serializeUser(user));
+
+            navigate('/');
         } catch (error) {
             console.log(error);
         }
-    } 
-    
+    };
+
     //With useForm
     // const loginSubmitHandler = async (data) => {
     //     try{
@@ -46,7 +56,7 @@ export default function Login() {
     //         console.log(err);
     //     }
     // }
-    
+
     // const { values, onChange, onSubmit } = useForm(loginSubmitHandler,{ // Custom Hook -> controlled form (see bellow inputs)
     //     //When mount those are the initial values
     //     [LoginFormKeys.Email]: '',
