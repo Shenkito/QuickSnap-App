@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/userService';
 
@@ -12,6 +13,8 @@ const RegisterFormKeys = {
 
 export default function Register() {
 
+    const navigate = useNavigate();
+
     const [values, setValues] = useState({
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',
@@ -19,7 +22,7 @@ export default function Register() {
     });
 
     const inputChangeHandler = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setValues({
             ...values,
             [name]: value,
@@ -30,12 +33,19 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const user = await userService.register(values);
-            console.log(user);
+            const user = await userService.register({
+                email: values[RegisterFormKeys.Email],
+                password: values[RegisterFormKeys.Password],
+            });
+
+            // Serialize and store the user data after successful login
+            localStorage.setItem('user', userService.serializeUser(user));
+
+            navigate('/');
         } catch (error) {
             console.log(error);
         }
-    } 
+    };
 
     return (
         <div className="register-container">
