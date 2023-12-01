@@ -24,7 +24,7 @@ export default function Add() {
     });
 
     const inputChangeHandler = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
@@ -33,7 +33,7 @@ export default function Add() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        
+
         try {
             const post = await postService.create(formData);
             navigate('/posts');
