@@ -9,13 +9,12 @@
 }
 
 .row {
-    
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-around;
+    /* Center the cards with equal space between them */
 }
-
 
 .latest {
     width: 100%;
@@ -23,8 +22,7 @@
     justify-content: center;
     margin-bottom: 1em;
     font-size: 2rem;
-    color: white;
+    color: cornsilk;
     text-transform: uppercase;
     font-weight: bold;
-    margin: 0, auto;
 }

@@ -69,3 +69,19 @@
         transform: translateY(0);
     }
 }
+
+.btn-details {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
+}
+
+.btn-details:hover {
+    background-color: #0056b3;
+}
