@@ -43,7 +43,7 @@ export default function Main() {
         fetchAndSetPosts().then(() => {
             const timer = setTimeout(() => {
                 setShowLatest(true);
-            }, 1000);
+            });
 
             return () => clearTimeout(timer); // Clear the timeout
         });

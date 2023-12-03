@@ -72,7 +72,7 @@
 
 .btn-details {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: lightskyblue;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -83,5 +83,82 @@
 }
 
 .btn-details:hover {
-    background-color: #0056b3;
+    background-color: cornflowerblue;
+}
+
+.details-section {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.comment-form {
+    margin-bottom: 15px;
+}
+
+.comment-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.comment-button {
+    padding: 8px 12px;
+    background-color: lightskyblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.comment-button:hover {
+    background-color: cornflowerblue;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+}
+
+.like-button {
+    padding: 8px 12px;
+    color: white;
+    background-color: lightskyblue;
+    border: #007bff;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.like-button.liked {
+    background-color: cornflowerblue;
+    color: #fff;
+}
+
+.like-button:hover {
+    background-color: cornflowerblue;
+}
+
+.like-count {
+    display: flex;
+    align-items: center;
+    margin-left: 8px; /* Adjust margin as needed for spacing */
+    font-size: 14px;
+    color: #777; /* Adjust color to match your design */
+}
+
+.like-count::before {
+    content: '\2665'; /* Unicode for heart symbol (change to an icon or emoji of your choice) */
+    margin-right: 4px; /* Adjust spacing between icon and text */
 }
