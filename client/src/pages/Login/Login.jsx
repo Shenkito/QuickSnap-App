@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as userService from '../../services/userService';
+import { useAuth } from '../../context/AuthContext';
+// import * as userService from '../../services/userService';
 
 import './Login.css'
 
@@ -15,6 +16,7 @@ const LoginFormKeys = {
 export default function Login() {
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const [values, setValues] = useState({
         [LoginFormKeys.Email]: '',
@@ -33,13 +35,13 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const user = await userService.login({
+            const user = await login({
                 email: values[LoginFormKeys.Email],
                 password: values[LoginFormKeys.Password],
             });
 
             // Serialize and store the user data after successful login
-            localStorage.setItem('user', userService.serializeUser(user));
+            // localStorage.setItem('user', userService.serializeUser(user));
 
             navigate('/');
         } catch (error) {
