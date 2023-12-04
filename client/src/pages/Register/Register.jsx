@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import * as userService from '../../services/userService';
+import { useAuth } from '../../context/AuthContext';
 
 import './Register.css'
 
@@ -14,6 +14,7 @@ const RegisterFormKeys = {
 export default function Register() {
 
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const [values, setValues] = useState({
         [RegisterFormKeys.Email]: '',
@@ -33,13 +34,13 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const user = await userService.register({
+            const user = await register({ // Use the register function from the AuthContext
                 email: values[RegisterFormKeys.Email],
                 password: values[RegisterFormKeys.Password],
             });
 
-            // Serialize and store the user data after successful login
-            localStorage.setItem('user', userService.serializeUser(user));
+            // // Serialize and store the user data after successful login
+            // localStorage.setItem('user', userService.serializeUser(user));
 
             navigate('/');
         } catch (error) {
