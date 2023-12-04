@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 import './NavBar.css'
 
 export default function NavBar() {
+    const { logout } = useAuth()
+
+    const logoutHandler = () => {
+        logout();
+    }
+
     return (
         <ul className="nav nav-underline">
             <li className="nav-item">
@@ -23,8 +30,8 @@ export default function NavBar() {
             <li className="nav-item">
                 <Link className="nav-link" to="/profile">Profile</Link>
             </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/logout">Logout</Link>
+            <li className="nav-item" onClick={logoutHandler}>
+                <Link className="nav-link" to="/">Logout</Link>
             </li>
         </ul>
     );
