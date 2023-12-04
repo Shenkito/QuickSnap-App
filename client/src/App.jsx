@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { useState } from 'react'
+import { AuthProvider } from './context/AuthContext'
 
 import NavBar from './components/nav-bar/NavBar'
 
@@ -27,18 +27,21 @@ function App() {
     // }
 
     return (
-        <div className="main-div">
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/posts" element={<Posts />} />
-                <Route path="/posts/add" element={<Add />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                {/* <Route path="/posts/:postId" element={<PostDetails />} /> */}
-            </Routes>
-            <Footer />
-        </div>
+        <AuthProvider>
+            <div className="main-div">
+
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/posts/add" element={<Add />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    {/* <Route path="/posts/:postId" element={<PostDetails />} /> */}
+                </Routes>
+                <Footer />
+            </div>
+        </AuthProvider>
     )
 }
 
