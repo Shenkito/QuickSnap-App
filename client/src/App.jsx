@@ -8,6 +8,7 @@ import Posts from './pages/Posts/Posts'
 import Add from './pages/Add/Add'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Profile from './pages/Profile/Profile'
 // import PostDetails from './pages/Details/PostDetails'
 
 import Footer from './components/footer/Footer'
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/posts/add" element={<Add />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/profile" element={<Profile />} />
                     {/* <Route path="/posts/:postId" element={<PostDetails />} /> */}
                 </Routes>
                 <Footer />
