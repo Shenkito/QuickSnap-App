@@ -38,7 +38,7 @@ export const login = async ({ email, password }) => {
     }
 };
 
-export const register = async ({ email, password }) => {
+export const register = async ({ email, password, username, bio, profileImage }) => {
     try {
         const headers = {
             'Content-Type': 'application/json',
@@ -49,10 +49,12 @@ export const register = async ({ email, password }) => {
             headers['X-Authorization'] = token;
         }
 
+        const userData = { email, password, username, bio, profileImage }; // Include username in the request body
+
         const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify({ email, password }), // Send email and password as an object
+            body: JSON.stringify(userData), // Send email, password, username, bio, and profileImage
         });
 
         if (!response.ok) {
@@ -67,6 +69,7 @@ export const register = async ({ email, password }) => {
         throw err;
     }
 };
+
 
 export const getStoredUser = () => {
     const serializedUser = localStorage.getItem('user');
