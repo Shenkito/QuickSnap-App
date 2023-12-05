@@ -49,6 +49,7 @@
     border-radius: 5px;
     margin: 0 auto;
     display: block;
+    resize: none;
 }
 
 .form-group textarea {

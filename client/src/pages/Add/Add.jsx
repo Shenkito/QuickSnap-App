@@ -1,33 +1,31 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import * as postService from '../../services/postService';
-
-import './Add.css'
+import './Add.css';
 
 const addFormKeys = {
     ImageUrl: 'imageUrl',
     Title: 'title',
     Content: 'content',
-    Author: 'author'
-}
+};
 
 export default function Add() {
-
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const [formData, setFormData] = useState({
         [addFormKeys.ImageUrl]: '',
         [addFormKeys.Title]: '',
         [addFormKeys.Content]: '',
-        [addFormKeys.Author]: '',
+        Author: user ? user.username : '', // Include the author's username
     });
 
     const inputChangeHandler = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
         });
     };
 
@@ -40,7 +38,7 @@ export default function Add() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div className="add-container">
@@ -51,6 +49,7 @@ export default function Add() {
                     <input
                         type="text"
                         className="form-control"
+                        placeholder="Enter the image URL here"
                         id="imageUrl"
                         name="imageUrl"
                         value={formData[addFormKeys.ImageUrl]}
@@ -78,18 +77,9 @@ export default function Add() {
                         onChange={inputChangeHandler}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="post-author">Author:</label>
-                    <input
-                        type="text"
-                        id="post-author"
-                        name="author"
-                        value={formData[addFormKeys.Author]}
-                        placeholder="Enter your name"
-                        onChange={inputChangeHandler}
-                    />
-                </div>
-                <button className="post-button" type="submit">SUBMIT</button>
+                <button className="post-button" type="submit">
+                    SUBMIT
+                </button>
             </form>
         </div>
     );
