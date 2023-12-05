@@ -5,8 +5,7 @@
     padding: 80px;
     border-radius: 8px;
     justify-content: center;
-    font-family: Arial, sans-serif;
-    /* Use your preferred font */
+    font-family: Arial, sans-serif; /* Use your preferred font */
 }
 
 .register-form {
@@ -39,7 +38,8 @@
 }
 
 .register-group input[type="text"],
-.register-group input[type="password"] {
+.register-group input[type="password"],
+.register-group textarea {
     width: calc(100% - 40px);
     padding: 10px;
     font-size: 1rem;
@@ -47,6 +47,11 @@
     border-radius: 5px;
     margin: 0 auto;
     display: block;
+    resize: none; /* Disable resizing */
+}
+
+.register-group textarea {
+    height: 100px; /* Set a fixed height */
 }
 
 .register-button {

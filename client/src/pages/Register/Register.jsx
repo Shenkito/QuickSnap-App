@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { useAuth } from '../../context/AuthContext';
 
-import './Register.css'
+import './Register.css';
 
 const RegisterFormKeys = {
     Email: 'email',
     Password: 'password',
-    ConfirmPassword: 'confirmPassword'
-}
+    ConfirmPassword: 'confirmPassword',
+    Bio: 'bio', // Add the key for bio field
+    ProfileImage: 'profileImage', // Add the key for profile image field
+    Username: 'username', // Add the key for the username field
+};
 
 export default function Register() {
-
     const navigate = useNavigate();
     const { register } = useAuth();
 
@@ -20,6 +21,9 @@ export default function Register() {
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',
         [RegisterFormKeys.ConfirmPassword]: '',
+        [RegisterFormKeys.Bio]: '', // Initialize bio field
+        [RegisterFormKeys.ProfileImage]: '', // Initialize profile image field
+        [RegisterFormKeys.Username]: '',
     });
 
     const inputChangeHandler = (e) => {
@@ -34,14 +38,15 @@ export default function Register() {
         e.preventDefault();
 
         try {
-            const user = await register({ // Use the register function from the AuthContext
+            const user = await register({
                 email: values[RegisterFormKeys.Email],
                 password: values[RegisterFormKeys.Password],
+                username: values[RegisterFormKeys.Username],
+                bio: values[RegisterFormKeys.Bio], // Pass the bio value to the register function
+                profileImage: values[RegisterFormKeys.ProfileImage], // Pass the profile image URL to the register function
             });
 
-            // // Serialize and store the user data after successful login
-            // localStorage.setItem('user', userService.serializeUser(user));
-
+            // Redirect to the home page after successful registration
             navigate('/');
         } catch (error) {
             console.log(error);
@@ -64,6 +69,17 @@ export default function Register() {
                     />
                 </div>
                 <div className="register-group">
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name={RegisterFormKeys.Username}
+                        placeholder="Enter your username"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.Username]}
+                    />
+                </div>
+                <div className="register-group">
                     <label htmlFor="password">Password:</label>
                     <input
                         type="password"
@@ -83,6 +99,27 @@ export default function Register() {
                         placeholder="Confirm your password"
                         onChange={inputChangeHandler}
                         value={values[RegisterFormKeys.ConfirmPassword]}
+                    />
+                </div>
+                <div className="register-group">
+                    <label htmlFor="bio">Bio:</label>
+                    <textarea
+                        id="bio"
+                        name={RegisterFormKeys.Bio}
+                        placeholder="Enter your bio"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.Bio]}
+                    />
+                </div>
+                <div className="register-group">
+                    <label htmlFor="profileImage">Profile Image URL:</label>
+                    <input
+                        type="text"
+                        id="profileImage"
+                        name={RegisterFormKeys.ProfileImage}
+                        placeholder="Enter profile image URL"
+                        onChange={inputChangeHandler}
+                        value={values[RegisterFormKeys.ProfileImage]}
                     />
                 </div>
                 <button className="register-button" type="submit">
