@@ -27,3 +27,26 @@ li.nav-item {
     transform: translateY(-2px);
     /* Add a slight lift effect on hover */
 }
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Vertically center items */
+    padding: 2px 0;
+    margin: 0;
+    position: relative;
+    /* Make the parent container a positioned element */
+}
+
+.user-info {
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    left: 10px;
+    /* Adjust the left position as needed */
+}
+
+.user-info:hover {
+    color: cornflowerblue;
+}
