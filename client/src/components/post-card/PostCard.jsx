@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import './PostCard.css';
 
-export default function PostCard({ imageUrl, title, content, _ownerId, description }) {
+export default function PostCard({ imageUrl, title, content, Author, _ownerId, description }) {
+    const { user } = useAuth();
     const [expanded, setExpanded] = useState(false);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState([]);
@@ -31,9 +33,9 @@ export default function PostCard({ imageUrl, title, content, _ownerId, descripti
                     <p className="card-text">{expanded ? content : description}</p>
                 </div>
                 <div className="card-footer">
-                    <small className="text-body-secondary">Author: {_ownerId}</small>
+                    <small className="text-body-secondary">Author: {Author}</small>
                 </div>
-                <button className="btn-details" onClick={toggleExpand}>
+                <button className="btn-details" onClick={user ? toggleExpand : null}>
                     {expanded ? 'See Less' : 'See Details'}
                 </button>
 
