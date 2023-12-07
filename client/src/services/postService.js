@@ -19,6 +19,23 @@ export const getAll = async () => {
     }
 };
 
+export const getOne = async (postId) => {
+    try {
+        const response = await fetch(`${baseUrl}/posts/${postId}`);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const post = await response.json();
+        console.log(post);
+        return post;
+    } catch (error) {
+        console.log('Error fetching post:', error);
+        throw error;
+    }
+};
+
 export const create = async (postData) => {
     const storedUser = getStoredUser(); // Retrieve user data containing the access token
 
