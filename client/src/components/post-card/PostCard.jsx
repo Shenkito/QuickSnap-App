@@ -1,15 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import * as commentService from '../../services/commentService';
+import * as postService from '../../services/postService';
+
 import './PostCard.css';
 
-export default function PostCard({ imageUrl, title, content, Author, _ownerId, description }) {
+const commentFormKeys = {
+    Comment: 'comment',
+};
+
+export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description }) {
     const { user } = useAuth();
     const [expanded, setExpanded] = useState(false);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState({
+        [commentFormKeys.Comment]: '',
+        Author: user ? user.username : '',
+        PostId: _id,
+    });
+
+    // useEffect(() => {
+    //     async function fetchComments() {
+    //         try {
+    //             const fetchedComments = await commentService.getByPostId(_id);
+    //             setComments(fetchedComments);
+    //         } catch (error) {
+    //             console.error('Error fetching comments:', error);
+    //         }
+    //     }
+
+    //     fetchComments();
+    // }, [_id]);
+
+    useEffect(() => {
+        async function fetchData() {
+            if (expanded) {
+
+                const fetchedComments = await commentService.getByPostId(_id);
+                setComments(fetchedComments);
+            }
+
+        }
+        fetchData();
+    }, [expanded]); // Or [] if effect doesn't need props or state
 
     const toggleExpand = () => {
         setExpanded(!expanded);
+        // console.log(expanded);
+        // const fetchedComments = await commentService.getByPostId(_id);
+        // setComments(fetchedComments);
+
     };
 
     const likeClickHandler = () => {
@@ -18,11 +59,34 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, d
         // Add the logic here to handle liking posts
     };
 
-    const commentSubmitHandler = (e) => {
-        e.preventDefault();
-        // Logic for handling comment submission
-        // Add the logic here to handle adding comments
+    const inputChangeHandler = (e) => {
+        const { name, value } = e.target;
+        setNewComment({
+            ...newComment,
+            [name]: value,
+        });
     };
+
+    const commentSubmitHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const createdComment = await commentService.create(newComment);
+            setComments([...comments, createdComment]);
+            setNewComment({ ...newComment, [commentFormKeys.Comment]: '' });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const onClickEditHandler = async (postId) => {
+        try {
+            const post = await postService.getOne(_id)
+            console.log('Retrieved post for editing:', post);
+        } catch (error) {
+            console.error('Error while fetching post for editing:', error);
+        }
+    }
 
     return (
         <div className="col">
@@ -38,6 +102,9 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, d
                 <button className="btn-details" onClick={user ? toggleExpand : null}>
                     {expanded ? 'See Less' : 'See Details'}
                 </button>
+                <button className="btn-details" onClick={onClickEditHandler}>
+                    Edit
+                </button>
 
                 {expanded && (
                     <div className="details-section">
@@ -51,17 +118,19 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, d
                                         name="comment"
                                         rows="3"
                                         placeholder="Write your comment here..."
+                                        value={newComment[commentFormKeys.Comment]}
+                                        onChange={inputChangeHandler}
                                     ></textarea>
                                 </div>
                                 <button type="submit" className="comment-button">
                                     Add Comment
                                 </button>
                             </form>
-                            {comments.length > 0 ? (
+                            {comments?.length > 0 ? (
                                 <ul className="comment-list">
-                                    {comments.map((comment, index) => (
-                                        <li key={index} className="comment">
-                                            {comment}
+                                    {comments.map((comment) => (
+                                        <li key={comment._id} className="comment">
+                                            {comment.comment} - {comment.Author}
                                         </li>
                                     ))}
                                 </ul>
