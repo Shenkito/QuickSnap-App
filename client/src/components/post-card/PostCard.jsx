@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 import * as commentService from '../../services/commentService';
 import * as postService from '../../services/postService';
 
@@ -11,6 +13,7 @@ const commentFormKeys = {
 
 export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description }) {
     const { user } = useAuth();
+    const navigate = useNavigate()
     const [expanded, setExpanded] = useState(false);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState([]);
@@ -18,6 +21,12 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         [commentFormKeys.Comment]: '',
         Author: user ? user.username : '',
         PostId: _id,
+    });
+    const [showEditMode, setShowEditMode] = useState(false);
+    const [postData, setPostData] = useState({
+        title: '',
+        content: '',
+        imageUrl: '',
     });
 
     // useEffect(() => {
@@ -59,12 +68,19 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         // Add the logic here to handle liking posts
     };
 
-    const inputChangeHandler = (e) => {
+    const inputChangeHandler = (e, type) => {
         const { name, value } = e.target;
-        setNewComment({
-            ...newComment,
-            [name]: value,
-        });
+        if (type === 'comment') {
+            setNewComment({
+                ...newComment,
+                [name]: value,
+            });
+        } else if (type === 'post') {
+            setPostData({
+                ...postData,
+                [name]: value,
+            });
+        }
     };
 
     const commentSubmitHandler = async (e) => {
@@ -79,12 +95,28 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         }
     };
 
-    const onClickEditHandler = async (postId) => {
+
+    const onClickEditHandler = async () => {
         try {
             const post = await postService.getOne(_id)
             console.log('Retrieved post for editing:', post);
+
+            setPostData(post);
+            setShowEditMode(true)
         } catch (error) {
             console.error('Error while fetching post for editing:', error);
+        }
+
+    }
+
+    const onClickSaveEditHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const post = await postService.update(postData, _id);
+            navigate(`/posts`);
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -102,9 +134,54 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                 <button className="btn-details" onClick={user ? toggleExpand : null}>
                     {expanded ? 'See Less' : 'See Details'}
                 </button>
-                <button className="btn-details" onClick={onClickEditHandler}>
-                    Edit
-                </button>
+                {user && _ownerId === user._id && (
+
+                    <button className="btn-details" onClick={onClickEditHandler}>
+                        Edit
+                    </button>
+                )}
+
+                {showEditMode && postData && (
+                    <div className="edit-mode">
+                        {/* Modal content here, use postData to display the fetched post */}
+                        <div className="edit-mode-content">
+                            <div className="edit-mode-body">
+                                <form onSubmit={onClickSaveEditHandler}>
+                                    <div className="form-group">
+                                        <label>Title:</label>
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            value={postData.title}
+                                            onChange={(e) => inputChangeHandler(e, 'post')}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Content:</label>
+                                        <textarea
+                                            name="content"
+                                            value={postData.content}
+                                            onChange={(e) => inputChangeHandler(e, 'post')}
+                                        ></textarea>
+                                    </div>
+                                    <div className="form-group">
+                                        <label>ImageUrl:</label>
+                                        <input
+                                            type="text"
+                                            name="imageUrl"
+                                            value={postData.imageUrl}
+                                            onChange={(e) => inputChangeHandler(e, 'post')}
+                                        />
+                                    </div>
+                                    {/* Add other form fields here */}
+                                    <button type="submit" className="post-button">
+                                        Save Changes
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {expanded && (
                     <div className="details-section">
@@ -119,7 +196,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                         rows="3"
                                         placeholder="Write your comment here..."
                                         value={newComment[commentFormKeys.Comment]}
-                                        onChange={inputChangeHandler}
+                                        onChange={(e) => inputChangeHandler(e, 'comment')}
                                     ></textarea>
                                 </div>
                                 <button type="submit" className="comment-button">
