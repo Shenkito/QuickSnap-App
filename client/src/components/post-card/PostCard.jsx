@@ -11,7 +11,7 @@ const commentFormKeys = {
     Comment: 'comment',
 };
 
-export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description, updateEditPostHandler }) {
+export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description, updateEditPostHandler, updateDeletePostHandler }) {
     const { user } = useAuth();
     const navigate = useNavigate()
     const [expanded, setExpanded] = useState(false);
@@ -29,6 +29,19 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         imageUrl: '',
     });
 
+    // useEffect(() => {
+    //     async function fetchComments() {
+    //         try {
+    //             const fetchedComments = await commentService.getByPostId(_id);
+    //             setComments(fetchedComments);
+    //         } catch (error) {
+    //             console.error('Error fetching comments:', error);
+    //         }
+    //     }
+
+    //     fetchComments();
+    // }, [_id]);
+
     useEffect(() => {
         async function fetchData() {
             if (expanded) {
@@ -43,6 +56,9 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
     const toggleExpand = () => {
         setExpanded(!expanded);
+        // console.log(expanded);
+        // const fetchedComments = await commentService.getByPostId(_id);
+        // setComments(fetchedComments);
 
     };
 
@@ -79,6 +95,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         }
     };
 
+
     const onClickEditHandler = async () => {
         try {
             const post = await postService.getOne(_id)
@@ -94,6 +111,25 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
     const onClickSaveEditHandler = async (e) => {
         e.preventDefault();
+
+        const { imageUrl, title, content } = postData;
+
+        if (!imageUrl.trim()) {
+            alert('Please provide an Image URL.');
+            return;
+        }
+
+        if (title.trim().length < 5 || title.trim().length > 50) {
+            alert('Your title should be between 5 and 50 characters.');
+            return;
+        }
+
+        if (!content.trim()) {
+            alert('Please enter the post content.');
+            return;
+        } else if (content.trim().length > 300) {
+            alert('Post content cannot be more than 300 characters.')
+        }
 
         const hasConfirmed = confirm(`Do you want to save the changes on ${title} ?`)
 
@@ -117,6 +153,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
             try {
                 const post = await postService.remove(_id);
+                // updateDeletePostHandler(post)
                 navigate('/posts')
             } catch (error) {
                 console.log(error);
@@ -154,6 +191,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
                 {showEditMode && postData && (
                     <div className="edit-mode">
+                        {/* Modal content here, use postData to display the fetched post */}
                         <div className="edit-mode-content">
                             <div className="edit-mode-body">
                                 <form onSubmit={onClickSaveEditHandler}>
@@ -183,7 +221,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                             onChange={(e) => inputChangeHandler(e, 'post')}
                                         />
                                     </div>
-                                    {/* Add other form fields here if needed */}
+                                    {/* Add other form fields here */}
                                     <button type="submit" className="post-button">
                                         Save Changes
                                     </button>
