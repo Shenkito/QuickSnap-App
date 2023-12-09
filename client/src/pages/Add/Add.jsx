@@ -18,7 +18,7 @@ export default function Add() {
         [addFormKeys.ImageUrl]: '',
         [addFormKeys.Title]: '',
         [addFormKeys.Content]: '',
-        Author: user ? user.username : '',
+        Author: user ? user.username : '', // Include the author's username
     });
 
     const inputChangeHandler = (e) => {
@@ -31,11 +31,24 @@ export default function Add() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log(formData.title);
 
-        if (formData.title && formData.title.length < 3) {
-            alert('Your title should be at least 4 characters.')
+        const { imageUrl, title, content } = formData;
+
+        if (!imageUrl.trim()) {
+            alert('Please provide an Image URL.');
             return;
+        }
+
+        if (title.trim().length < 5 || title.trim().length > 50) {
+            alert('Your title should be between 5 and 50 characters.');
+            return;
+        }
+
+        if (!content.trim()) {
+            alert('Please enter the post content.');
+            return;
+        } else if (content.trim().length > 300) {
+            alert('Post content cannot be more than 300 characters.')
         }
 
         try {
