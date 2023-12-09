@@ -14,6 +14,7 @@ import Profile from './pages/Profile/Profile'
 import Footer from './components/footer/Footer'
 
 import './App.css'
+import AuthGuard from './guards/authGuard'
 
 
 function App() {
@@ -29,20 +30,23 @@ function App() {
 
     return (
         <AuthProvider>
-            <div className="main-div">
+            {/* <div className="main-div"> */}
 
                 <NavBar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/posts" element={<Posts />} />
-                    <Route path="/posts/add" element={<Add />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/profile" element={<Profile />} />
+
+                    <Route element={<AuthGuard />}>
+                        <Route path="/posts/add" element={<Add />} />
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
                     {/* <Route path="/posts/:postId" element={<PostDetails />} /> */}
                 </Routes>
                 <Footer />
-            </div>
+            {/* </div> */}
         </AuthProvider>
     )
 }
