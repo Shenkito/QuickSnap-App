@@ -112,11 +112,32 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
     const onClickSaveEditHandler = async (e) => {
         e.preventDefault();
 
-        try {
-            const post = await postService.update(postData, _id);
-            navigate(`/posts`);
-        } catch (error) {
-            console.log(error);
+        const hasConfirmed = confirm(`Do you want to save the changes on ${title} ?`)
+
+        if (hasConfirmed) {
+
+            try {
+                const post = await postService.update(postData, _id);
+                navigate(`/posts`);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+    const onClickDeleteHandler = async (e) => {
+        e.preventDefault();
+
+        const hasConfirmed = confirm(`Do you want to delete ${title} ?`)
+
+        if (hasConfirmed) {
+
+            try {
+                const post = await postService.remove(_id);
+                navigate('/posts')
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -132,13 +153,20 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                     <small className="text-body-secondary">Author: {Author}</small>
                 </div>
                 <button className="btn-details" onClick={user ? toggleExpand : null}>
-                    {expanded ? 'See Less' : 'See Details'}
+                    {expanded ? 'See Less' : 'See More'}
                 </button>
                 {user && _ownerId === user._id && (
+                    <>
 
-                    <button className="btn-details" onClick={onClickEditHandler}>
-                        Edit
-                    </button>
+                        <button className="btn-details" onClick={onClickEditHandler}>
+                            Edit
+                        </button>
+
+                        <button className="btn-details" onClick={onClickDeleteHandler}>
+                            Delete
+                        </button>
+
+                    </>
                 )}
 
                 {showEditMode && postData && (
