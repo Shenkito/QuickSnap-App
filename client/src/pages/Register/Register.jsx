@@ -2,15 +2,17 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
+import { Link } from 'react-router-dom';
+
 import './Register.css';
 
 const RegisterFormKeys = {
     Email: 'email',
     Password: 'password',
     ConfirmPassword: 'confirmPassword',
-    Bio: 'bio',
-    ProfileImage: 'profileImage',
-    Username: 'username',
+    Bio: 'bio', // Add the key for bio field
+    ProfileImage: 'profileImage', // Add the key for profile image field
+    Username: 'username', // Add the key for the username field
 };
 
 export default function Register() {
@@ -21,8 +23,8 @@ export default function Register() {
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',
         [RegisterFormKeys.ConfirmPassword]: '',
-        [RegisterFormKeys.Bio]: '',
-        [RegisterFormKeys.ProfileImage]: '',
+        [RegisterFormKeys.Bio]: '', // Initialize bio field
+        [RegisterFormKeys.ProfileImage]: '', // Initialize profile image field
         [RegisterFormKeys.Username]: '',
     });
 
@@ -37,15 +39,53 @@ export default function Register() {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        const { email, password, confirmPassword, bio, profileImage, username } = values;
+
+        // Check for empty fields
+        if (!email || !password || !confirmPassword || !bio || !profileImage || !username) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        // Email validation using a simple regular expression
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        if (username.length < 5 || username.length > 20) {
+            alert('Username should be between 5 and 20 characters');
+            return;
+        }
+
+        // Password length validation
+        if (password.length < 6) {
+            alert('Password should be at least 6 characters long.');
+            return;
+        }
+
+        // Password match validation
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+
+        if (bio.length < 10 || bio.length > 200) {
+            alert('Bio must be between 30 and 200 characters.');
+            return;
+        }
+
         try {
             const user = await register({
                 email: values[RegisterFormKeys.Email],
                 password: values[RegisterFormKeys.Password],
                 username: values[RegisterFormKeys.Username],
-                bio: values[RegisterFormKeys.Bio],
-                profileImage: values[RegisterFormKeys.ProfileImage],
+                bio: values[RegisterFormKeys.Bio], // Pass the bio value to the register function
+                profileImage: values[RegisterFormKeys.ProfileImage], // Pass the profile image URL to the register function
             });
 
+            // Redirect to the home page after successful registration
             navigate('/');
         } catch (error) {
             console.log(error);
@@ -125,8 +165,7 @@ export default function Register() {
                     REGISTER
                 </button>
                 <p>
-                    If you already have an account,<a href="/login" className="login-link">click here</a>to log in.
-                </p>
+                    If you already have an account, <Link to="/login" className="login-link">click here</Link> to log in.</p>
             </form>
         </div>
     );
