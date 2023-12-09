@@ -35,15 +35,19 @@ export default function Posts() {
 
     const updateEditPostHandler = (post) => {
         const old = posts.filter(oldPost => oldPost._id !== post._id)
-        setPosts([...old, post] )
+        setPosts([...old, post])
     }
+
+    // const updateDeletePostHandler = (post) => {
+    //     setPosts(oldPosts => oldPosts.filter(currPost => currPost._id !== post._id));
+    // };
 
     return (
         <div className="posts-wrapper">
             <div className="post-cards">
                 {Array.isArray(posts) && posts.length > 0 ? (
                     posts.map((post) => (
-                        <PostCard key={post._id} {...post} updateEditPostHandler={updateEditPostHandler}
+                        <PostCard key={post._id} {...post} updateEditPostHandler={updateEditPostHandler} //updateDeletePostHandler={updateDeletePostHandler}
                         // key={post._id} // Assuming post._id is the unique identifier
                         // imageUrl={post.imageUrl}
                         // title={post.title}
@@ -52,7 +56,7 @@ export default function Posts() {
                         />
                     ))
                 ) : (
-                    <p>No posts available</p>
+                    <p className='no-posts-message'>No posts available</p>
                 )}
             </div>
             {/* Pagination component */}
