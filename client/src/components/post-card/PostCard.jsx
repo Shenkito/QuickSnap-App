@@ -72,7 +72,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
             setComments([...comments, createdComment]);
             setNewComment({ ...newComment, [commentFormKeys.Comment]: '' });
         } catch (error) {
-            console.log(error);
+            alert(error)
         }
     };
 
@@ -80,12 +80,11 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
     const onClickEditHandler = async () => {
         try {
             const post = await postService.getOne(_id)
-            console.log('Retrieved post for editing:', post);
 
             setPostData(post);
             setShowEditMode(true)
         } catch (error) {
-            console.error('Error while fetching post for editing:', error);
+            alert(error)
         }
 
     }
@@ -120,7 +119,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                 const post = await postService.update(postData, _id);
                 updateEditPostHandler(post)
             } catch (error) {
-                console.log(error);
+                alert(error)
             }
         }
     }
@@ -137,7 +136,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                 // updateDeletePostHandler(post)
                 navigate('/posts')
             } catch (error) {
-                console.log(error);
+                alert(error)
             }
         }
     }

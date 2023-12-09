@@ -14,8 +14,7 @@ export const AuthProvider = ({ children }) => {
             setUser(loggedInUser);
             return loggedInUser;
         } catch (error) {
-            console.log(error);
-            throw error;
+            alert(error)
         }
     };
 
@@ -25,8 +24,7 @@ export const AuthProvider = ({ children }) => {
             setUser(registeredUser);
             return registeredUser;
         } catch (error) {
-            console.log(error);
-            throw error;
+            alert(error)
         }
     };
 

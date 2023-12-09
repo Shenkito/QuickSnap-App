@@ -22,11 +22,10 @@ export default function Posts() {
                     }));
                     setPosts(postsArray);
                 } else {
-                    console.error('Received data is not in an object format:', postsObject);
                     setPosts([]);
                 }
             } catch (error) {
-                console.error('Error fetching posts:', error);
+                alert(error)
             }
         };
 

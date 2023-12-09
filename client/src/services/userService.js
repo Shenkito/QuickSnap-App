@@ -32,9 +32,8 @@ export const login = async ({ email, password }) => {
         const result = await response.json();
         localStorage.setItem('user', serializeUser(result));
         return result;
-    } catch (err) {
-        console.error(err);
-        throw err;
+    } catch (error) {
+        alert(error)
     }
 };
 
@@ -64,9 +63,8 @@ export const register = async ({ email, password, username, bio, profileImage })
         const result = await response.json();
         localStorage.setItem('user', serializeUser(result));
         return result;
-    } catch (err) {
-        console.error(err);
-        throw err;
+    } catch (error) {
+        alert(error)
     }
 };
 

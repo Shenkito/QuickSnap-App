@@ -11,11 +11,10 @@ export const getAll = async () => {
         }
 
         const comments = await response.json();
-        console.log(comments);
         return comments;
 
     } catch (error) {
-        console.log('Error fetching comments:', error);
+        alert(error)
     }
 };
 
@@ -56,10 +55,9 @@ export const getByPostId = async (postId) => {
         }
 
         const comments = await response.json();
-        console.log(comments);
         return comments;
 
     } catch (error) {
-        console.log('Error fetching comments:', error);
+        alert(error)
     }
 };

@@ -55,7 +55,7 @@ export default function Add() {
             const post = await postService.create(formData);
             navigate('/posts');
         } catch (error) {
-            console.log(error);
+            alert(error)
         }
     };
 

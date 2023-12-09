@@ -11,11 +11,10 @@ export const getAll = async () => {
         }
 
         const posts = await response.json();
-        console.log(posts);
         return posts;
 
     } catch (error) {
-        console.log('Error fetching posts:', error);
+        alert(error)
     }
 };
 
@@ -30,8 +29,7 @@ export const getOne = async (postId) => {
         const post = await response.json();
         return post;
     } catch (error) {
-        console.log('Error fetching post:', error);
-        throw error;
+        alert(error)
     }
 };
 
