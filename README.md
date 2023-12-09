@@ -1,62 +1,39 @@
-# Social Media Platform
-
-A social media platform built with React where users can create posts, comment on posts, like posts, and manage their profiles.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Technologies Used](#technologies-used)
-- [Folder Structure](#folder-structure)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+# QuickSnap App
 
 ## Introduction
 
-[Add a brief introduction here summarizing the purpose of the application.]
+QuickSnap is a web application that enables users to create, view, comment on, and manage posts. This app is built using React as the primary framework along with React Router for seamless navigation between pages.
 
-## Features
+The purpose of the app is project for course ReactJS in SoftUni.
 
-- **User Authentication**: [Explain user authentication feature briefly.]
-- **Create Posts**: [Describe the ability to create posts.]
-- **View Posts**: [Explain how users can view existing posts.]
-- [Continue listing other features with brief explanations.]
+### Features
 
-## Installation
+- **User Authentication:** Secure registration, login, and logout functionalities.
+- **Create Posts:** Authenticated users can create new posts with images, titles, and content.
+- **View Posts:** Browse through all existing posts conveniently.
+- **Commenting:** Interact by commenting on posts and view existing comments.
+- **Profile:** User profile details including username, email, bio, and profile image.
 
-1. Clone the repository: `git clone <repository-url>`
-2. Navigate to the project directory: `cd social-media-platform`
-3. Install dependencies: `npm install`
-4. Run the app locally: `npm start`
+### Installation
 
-## Usage
+1. Clone the repository: `https://github.com/Shenkito/QuickSnap-App`
+2. Install dependencies: `npm install`
+3. Navigate to the project directory: `cd client`
+3.1 Type in terminal: `npm run dev`
+4. Navigate to the project directory: `cd server`
+4.1 Type in terminal `node server.js`
 
-1. Open your browser and navigate to `http://localhost:3000`.
-2. [Provide instructions on how to use the application.]
+### Usage
 
-## Technologies Used
+1. Open your browser and go to http://localhost:3000.
+2. Register for an account or log in with existing credentials.
+3. Explore, create, comment.
+
+### Technologies Used
 
 - React
 - React Router
 - JavaScript
-- HTML/CSS
+- HTML/CSS/Bootstrap
 - RESTful APIs
-
-## Folder Structure
-
-[Explain the project's folder structure briefly.]
-
-## API Endpoints
-
-[Describe the API endpoints used in the application.]
-
-## Contributing
-
-[Provide guidelines for contributors and how to contribute.]
-
-## License
-
-This project is licensed under the [License Type] License - see the [LICENSE](./LICENSE) file for details.
+- Vite
