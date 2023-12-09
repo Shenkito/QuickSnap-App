@@ -55,7 +55,7 @@ export default function Posts() {
                         />
                     ))
                 ) : (
-                    <p className='no-posts-message'>No posts available</p>
+                    <p className='no-posts-message'>No posts available.</p>
                 )}
             </div>
         </div>
