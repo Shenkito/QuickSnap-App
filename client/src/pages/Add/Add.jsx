@@ -31,6 +31,12 @@ export default function Add() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        console.log(formData.title);
+
+        if (formData.title && formData.title.length < 3) {
+            alert('Your title should be at least 4 characters.')
+            return;
+        }
 
         try {
             const post = await postService.create(formData);

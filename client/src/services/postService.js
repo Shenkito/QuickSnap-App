@@ -49,7 +49,7 @@ export const create = async (postData) => {
         headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken, // Include the access token in the header
-            
+
         },
         body: JSON.stringify(postData),
     });
@@ -77,7 +77,7 @@ export const update = async (postData, postId) => {
         headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken, // Include the access token in the header
-            
+
         },
         body: JSON.stringify(postData),
     });
@@ -105,7 +105,7 @@ export const remove = async (postId) => {
         headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken, // Include the access token in the header
-            
+
         },
         body: JSON.stringify(),
     });
