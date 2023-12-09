@@ -25,3 +25,10 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.no-posts-message {
+
+    font-size: 30px;
+    margin-top: 1em; /* Margin for the message */
+    color: white;
+}

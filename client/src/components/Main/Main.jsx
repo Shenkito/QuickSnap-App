@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PostCard from '../post-card/PostCard';
-
 import * as postService from '../../services/postService';
 import './Main.css';
 
 export default function Main() {
-
     const [showLatest, setShowLatest] = useState(false);
     const [posts, setPosts] = useState([]);
 
@@ -46,20 +44,19 @@ export default function Main() {
     return (
         <section className={`element ${showLatest ? 'show' : ''}`}>
             <h1 className="latest">Latest Posts</h1>
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-                {showLatest &&
-                    posts.map((post) => (
-                        <PostCard
-                            key={post._id} {...post}
-                        // imageUrl={post.imageUrl}
-                        // title={post.title}
-                        // content={post.content}
-                        // _ownerId={post._ownerId}
-                        // _id={post._id}
-                        // description={post.description}
-                        />
-                    ))}
-            </div>
+            {posts.length === 0 ? (
+                <p className="no-posts-message">There are currently no posts.</p>
+            ) : (
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                    {showLatest &&
+                        posts.map((post) => (
+                            <PostCard
+                                key={post._id}
+                                {...post}
+                            />
+                        ))}
+                </div>
+            )}
         </section>
     );
 }
