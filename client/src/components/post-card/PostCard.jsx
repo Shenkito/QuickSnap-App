@@ -11,7 +11,7 @@ const commentFormKeys = {
     Comment: 'comment',
 };
 
-export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description }) {
+export default function PostCard({ imageUrl, title, content, Author, _ownerId, _id, description, updateEditPostHandler }) {
     const { user } = useAuth();
     const navigate = useNavigate()
     const [expanded, setExpanded] = useState(false);
@@ -118,7 +118,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
             try {
                 const post = await postService.update(postData, _id);
-                navigate(`/posts`);
+                updateEditPostHandler(post)
             } catch (error) {
                 console.log(error);
             }
@@ -152,7 +152,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                 <div className="card-footer">
                     <small className="text-body-secondary">Author: {Author}</small>
                 </div>
-                <button className="btn-details" onClick={user ? toggleExpand : null}>
+                <button className="btn-details" onClick={toggleExpand}>
                     {expanded ? 'See Less' : 'See More'}
                 </button>
                 {user && _ownerId === user._id && (
@@ -214,7 +214,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                 {expanded && (
                     <div className="details-section">
                         <div className="comments-section">
-                            <form className="comment-form" onSubmit={commentSubmitHandler}>
+                            {user && <form className="comment-form" onSubmit={commentSubmitHandler}>
                                 <div className="form-group">
                                     <label htmlFor="comment">Comment:</label>
                                     <textarea
@@ -230,7 +230,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                 <button type="submit" className="comment-button">
                                     Add Comment
                                 </button>
-                            </form>
+                            </form>}
                             {comments?.length > 0 ? (
                                 <ul className="comment-list">
                                     {comments.map((comment) => (
@@ -244,9 +244,10 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                             )}
                         </div>
                         <div className="interaction-section">
-                            <button className={`like-button ${liked ? 'liked' : ''}`} onClick={likeClickHandler}>
+                            {user && <button className={`like-button ${liked ? 'liked' : ''}`} onClick={likeClickHandler}>
                                 {liked ? 'Liked' : 'Like'}
-                            </button>
+                            </button>}
+
                         </div>
                         <span className="like-count">'Display likes here'</span>
                     </div>

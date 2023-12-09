@@ -36,12 +36,17 @@ export default function Posts() {
         fetchPosts();
     }, []);
 
+    const updateEditPostHandler = (post) => {
+        const old = posts.filter(oldPost => oldPost._id !== post._id)
+        setPosts([...old, post] )
+    }
+
     return (
         <div className="posts-wrapper">
             <div className="post-cards">
                 {Array.isArray(posts) && posts.length > 0 ? (
                     posts.map((post) => (
-                        <PostCard key={post._id} {...post}
+                        <PostCard key={post._id} {...post} updateEditPostHandler={updateEditPostHandler}
                         // key={post._id} // Assuming post._id is the unique identifier
                         // imageUrl={post.imageUrl}
                         // title={post.title}
