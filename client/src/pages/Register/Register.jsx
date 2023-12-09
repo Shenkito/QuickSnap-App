@@ -10,9 +10,9 @@ const RegisterFormKeys = {
     Email: 'email',
     Password: 'password',
     ConfirmPassword: 'confirmPassword',
-    Bio: 'bio', // Add the key for bio field
-    ProfileImage: 'profileImage', // Add the key for profile image field
-    Username: 'username', // Add the key for the username field
+    Bio: 'bio',
+    ProfileImage: 'profileImage',
+    Username: 'username',
 };
 
 export default function Register() {
@@ -23,8 +23,8 @@ export default function Register() {
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',
         [RegisterFormKeys.ConfirmPassword]: '',
-        [RegisterFormKeys.Bio]: '', // Initialize bio field
-        [RegisterFormKeys.ProfileImage]: '', // Initialize profile image field
+        [RegisterFormKeys.Bio]: '',
+        [RegisterFormKeys.ProfileImage]: '',
         [RegisterFormKeys.Username]: '',
     });
 
@@ -41,13 +41,11 @@ export default function Register() {
 
         const { email, password, confirmPassword, bio, profileImage, username } = values;
 
-        // Check for empty fields
         if (!email || !password || !confirmPassword || !bio || !profileImage || !username) {
             alert('Please fill in all fields.');
             return;
         }
 
-        // Email validation using a simple regular expression
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             alert('Please enter a valid email address.');
@@ -59,13 +57,11 @@ export default function Register() {
             return;
         }
 
-        // Password length validation
         if (password.length < 6) {
             alert('Password should be at least 6 characters long.');
             return;
         }
 
-        // Password match validation
         if (password !== confirmPassword) {
             alert('Passwords do not match.');
             return;
@@ -81,11 +77,10 @@ export default function Register() {
                 email: values[RegisterFormKeys.Email],
                 password: values[RegisterFormKeys.Password],
                 username: values[RegisterFormKeys.Username],
-                bio: values[RegisterFormKeys.Bio], // Pass the bio value to the register function
-                profileImage: values[RegisterFormKeys.ProfileImage], // Pass the profile image URL to the register function
+                bio: values[RegisterFormKeys.Bio],
+                profileImage: values[RegisterFormKeys.ProfileImage],
             });
 
-            // Redirect to the home page after successful registration
             navigate('/');
         } catch (error) {
             console.log(error);

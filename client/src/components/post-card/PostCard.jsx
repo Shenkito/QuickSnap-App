@@ -29,19 +29,6 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         imageUrl: '',
     });
 
-    // useEffect(() => {
-    //     async function fetchComments() {
-    //         try {
-    //             const fetchedComments = await commentService.getByPostId(_id);
-    //             setComments(fetchedComments);
-    //         } catch (error) {
-    //             console.error('Error fetching comments:', error);
-    //         }
-    //     }
-
-    //     fetchComments();
-    // }, [_id]);
-
     useEffect(() => {
         async function fetchData() {
             if (expanded) {
@@ -56,16 +43,10 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
     const toggleExpand = () => {
         setExpanded(!expanded);
-        // console.log(expanded);
-        // const fetchedComments = await commentService.getByPostId(_id);
-        // setComments(fetchedComments);
-
     };
 
     const likeClickHandler = () => {
         setLiked(!liked);
-        // Logic for handling like button click
-        // Add the logic here to handle liking posts
     };
 
     const inputChangeHandler = (e, type) => {
@@ -191,7 +172,6 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
                 {showEditMode && postData && (
                     <div className="edit-mode">
-                        {/* Modal content here, use postData to display the fetched post */}
                         <div className="edit-mode-content">
                             <div className="edit-mode-body">
                                 <form onSubmit={onClickSaveEditHandler}>

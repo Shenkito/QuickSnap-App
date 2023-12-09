@@ -24,7 +24,6 @@ export default function Main() {
 
                     setPosts(latestPosts);
                 } else {
-                    console.error('Received data is not in an object format:', postsObject);
                     setPosts([]);
                 }
             } catch (error) {

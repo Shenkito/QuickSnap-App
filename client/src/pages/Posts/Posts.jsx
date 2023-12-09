@@ -59,8 +59,6 @@ export default function Posts() {
                     <p className='no-posts-message'>No posts available</p>
                 )}
             </div>
-            {/* Pagination component */}
-            {/* Add pagination component here */}
         </div>
     );
 }
