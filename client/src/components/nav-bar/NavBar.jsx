@@ -26,7 +26,7 @@ export default function NavBar() {
                 <Link className="nav-link" to="/posts">All Posts</Link>
             </li>
 
-            {user ? ( // Check if there is a logged-in user
+            {user ? (
                 <>
                     <li className="nav-item">
                         <Link className="nav-link" to="/posts/add">Add Post</Link>

@@ -12,27 +12,21 @@ export default function Main() {
     useEffect(() => {
         const fetchAndSetPosts = async () => {
             try {
-                // Assuming postService.getAll() fetches posts
                 const postsObject = await postService.getAll();
 
-                // Check if the received data is an object
                 if (typeof postsObject === 'object' && postsObject !== null) {
-                    // Convert object keys into an array of posts
                     const postsArray = Object.keys(postsObject).map((key) => ({
-                        _id: key, // Assuming the post ID is stored in the key
-                        ...postsObject[key], // Spread other post properties
+                        _id: key,
+                        ...postsObject[key],
                     }));
 
-                    // Sort posts by createdAt in descending order to get the latest first
                     const sortedPosts = postsArray.sort((a, b) => new Date(b._createdOn) - new Date(a._createdOn));
 
-                    // Take only the first three posts (the latest)
                     const latestPosts = sortedPosts.slice(0, 3);
 
                     setPosts(latestPosts);
                 } else {
                     console.error('Received data is not in an object format:', postsObject);
-                    // You can handle this situation accordingly (e.g., set an empty array or show an error message)
                     setPosts([]);
                 }
             } catch (error) {
@@ -45,7 +39,7 @@ export default function Main() {
                 setShowLatest(true);
             });
 
-            return () => clearTimeout(timer); // Clear the timeout
+            return () => clearTimeout(timer);
         });
     }, []);
 

@@ -18,7 +18,7 @@ export default function Add() {
         [addFormKeys.ImageUrl]: '',
         [addFormKeys.Title]: '',
         [addFormKeys.Content]: '',
-        Author: user ? user.username : '', // Include the author's username
+        Author: user ? user.username : '',
     });
 
     const inputChangeHandler = (e) => {

@@ -15,17 +15,14 @@ export default function Posts() {
             try {
                 const postsObject = await postService.getAll();
 
-                // Check if the received data is an object
                 if (typeof postsObject === 'object' && postsObject !== null) {
-                    // Convert object keys into an array of posts
                     const postsArray = Object.keys(postsObject).map((key) => ({
-                        _id: key, // Assuming the post ID is stored in the key
-                        ...postsObject[key], // Spread other post properties
+                        _id: key,
+                        ...postsObject[key],
                     }));
                     setPosts(postsArray);
                 } else {
                     console.error('Received data is not in an object format:', postsObject);
-                    // You can handle this situation accordingly (e.g., set an empty array or show an error message)
                     setPosts([]);
                 }
             } catch (error) {

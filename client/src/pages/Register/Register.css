@@ -5,7 +5,7 @@
     padding: 80px;
     border-radius: 8px;
     justify-content: center;
-    font-family: Arial, sans-serif; /* Use your preferred font */
+    font-family: Arial, sans-serif;
 }
 
 .register-form {
@@ -47,11 +47,11 @@
     border-radius: 5px;
     margin: 0 auto;
     display: block;
-    resize: none; /* Disable resizing */
+    resize: none;
 }
 
 .register-group textarea {
-    height: 100px; /* Set a fixed height */
+    height: 100px;
 }
 
 .register-button {

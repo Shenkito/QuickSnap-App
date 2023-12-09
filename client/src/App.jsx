@@ -19,15 +19,6 @@ import AuthGuard from './guards/authGuard'
 
 function App() {
 
-    //With useForm - and this loginSubmitHandler={loginSubmitHandler} is going to element Login as props
-    // const [auth, setAuth] = useState({});
-    // const loginSubmitHandler = (values) => {
-    //     const updatedAuth = { ...auth, ...values};
-    //     setAuth(updatedAuth);
-    //     console.log(auth);
-    //     console.log(updatedAuth);
-    // }
-
     return (
         <AuthProvider>
             {/* <div className="main-div"> */}

@@ -22,7 +22,7 @@ export const login = async ({ email, password }) => {
         const response = await fetch(`${baseUrl}/login`, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify({ email, password }), // Send email and password as an object
+            body: JSON.stringify({ email, password }),
         });
 
         if (!response.ok) {
@@ -30,7 +30,7 @@ export const login = async ({ email, password }) => {
         }
 
         const result = await response.json();
-        localStorage.setItem('user', serializeUser(result)); // Serialize user data
+        localStorage.setItem('user', serializeUser(result));
         return result;
     } catch (err) {
         console.error(err);
@@ -49,12 +49,12 @@ export const register = async ({ email, password, username, bio, profileImage })
             headers['X-Authorization'] = token;
         }
 
-        const userData = { email, password, username, bio, profileImage }; // Include username in the request body
+        const userData = { email, password, username, bio, profileImage };
 
         const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
             headers: headers,
-            body: JSON.stringify(userData), // Send email, password, username, bio, and profileImage
+            body: JSON.stringify(userData),
         });
 
         if (!response.ok) {
@@ -62,7 +62,7 @@ export const register = async ({ email, password, username, bio, profileImage })
         }
 
         const result = await response.json();
-        localStorage.setItem('user', serializeUser(result)); // Serialize user data
+        localStorage.setItem('user', serializeUser(result));
         return result;
     } catch (err) {
         console.error(err);
@@ -74,7 +74,7 @@ export const register = async ({ email, password, username, bio, profileImage })
 export const getStoredUser = () => {
     const serializedUser = localStorage.getItem('user');
     if (serializedUser) {
-        return deserializeUser(serializedUser); // Deserialize user data
+        return deserializeUser(serializedUser);
     }
     return null;
 };

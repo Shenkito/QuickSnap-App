@@ -3,17 +3,13 @@
     color: white;
     text-align: center;
     padding: 10px 0;
-    /* Adjusted padding */
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* background-color: blueviolet; */
-    /* Adding a background color for visibility */
 }
 
 /* Style for paragraph within footer */
 .footer p {
     margin: 0;
     font-size: 15px;
-    /* Reduced font size */
 }

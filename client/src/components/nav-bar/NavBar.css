@@ -3,19 +3,16 @@ ul.nav.nav-underline {
     justify-content: center;
     padding: 2px 0;
     margin: 0;
-    /* background-color: blueviolet; */
 }
 
 li.nav-item {
     margin: 0 0px;
-    /* Adjust margin between nav items */
     transition: transform 0.3s ease-in-out;
 }
 
 .nav-item a.nav-link {
     text-decoration: none;
     padding: 8px 16px;
-    /* Adjust padding for better click area */
     color: white;
 }
 
@@ -25,18 +22,15 @@ li.nav-item {
 
 .nav-item:hover {
     transform: translateY(-2px);
-    /* Add a slight lift effect on hover */
 }
 
 .nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Vertically center items */
     padding: 2px 0;
     margin: 0;
     position: relative;
-    /* Make the parent container a positioned element */
 }
 
 .user-info {
@@ -44,7 +38,6 @@ li.nav-item {
     font-size: 16px;
     position: absolute;
     left: 10px;
-    /* Adjust the left position as needed */
 }
 
 .user-info:hover {

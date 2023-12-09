@@ -20,7 +20,7 @@ export const getAll = async () => {
 };
 
 export const create = async (commentData) => {
-    const storedUser = getStoredUser(); // Retrieve user data containing the access token
+    const storedUser = getStoredUser();
 
     if (!storedUser || !storedUser.accessToken) {
         throw new Error('Access token not found');
@@ -32,7 +32,7 @@ export const create = async (commentData) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Authorization': accessToken, // Include the access token in the header
+            'X-Authorization': accessToken,
             
         },
         body: JSON.stringify(commentData),

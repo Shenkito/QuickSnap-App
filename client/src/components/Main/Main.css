@@ -13,7 +13,6 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-around;
-    /* Center the cards with equal space between them */
 }
 
 .latest {

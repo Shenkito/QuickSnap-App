@@ -1,6 +1,6 @@
 import { useAuth } from '../../context/AuthContext';
 
-import './Profile.css'; // Import the CSS file for styling
+import './Profile.css';
 
 const Profile = () => {
 

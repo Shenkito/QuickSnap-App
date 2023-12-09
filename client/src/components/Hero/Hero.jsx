@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import './Hero.css';
 
 

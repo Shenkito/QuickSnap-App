@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(userService.getStoredUser()); // Retrieve stored user from local storage
+    const [user, setUser] = useState(userService.getStoredUser());
 
     const login = async ({ email, password }) => {
         try {
@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        // Perform logout actions, e.g., clear local storage, reset state, etc.
         localStorage.removeItem('user');
         setUser(null);
     };

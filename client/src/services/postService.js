@@ -36,7 +36,7 @@ export const getOne = async (postId) => {
 };
 
 export const create = async (postData) => {
-    const storedUser = getStoredUser(); // Retrieve user data containing the access token
+    const storedUser = getStoredUser();
 
     if (!storedUser || !storedUser.accessToken) {
         throw new Error('Access token not found');
@@ -48,7 +48,7 @@ export const create = async (postData) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-Authorization': accessToken, // Include the access token in the header
+            'X-Authorization': accessToken,
 
         },
         body: JSON.stringify(postData),
@@ -64,7 +64,7 @@ export const create = async (postData) => {
 };
 
 export const update = async (postData, postId) => {
-    const storedUser = getStoredUser(); // Retrieve user data containing the access token
+    const storedUser = getStoredUser();
 
     if (!storedUser || !storedUser.accessToken) {
         throw new Error('Access token not found');
@@ -76,7 +76,7 @@ export const update = async (postData, postId) => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'X-Authorization': accessToken, // Include the access token in the header
+            'X-Authorization': accessToken,
 
         },
         body: JSON.stringify(postData),
@@ -92,7 +92,7 @@ export const update = async (postData, postId) => {
 };
 
 export const remove = async (postId) => {
-    const storedUser = getStoredUser(); // Retrieve user data containing the access token
+    const storedUser = getStoredUser();
 
     if (!storedUser || !storedUser.accessToken) {
         throw new Error('Access token not found');
@@ -104,7 +104,7 @@ export const remove = async (postId) => {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'X-Authorization': accessToken, // Include the access token in the header
+            'X-Authorization': accessToken,
 
         },
         body: JSON.stringify(),

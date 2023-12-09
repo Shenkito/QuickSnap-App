@@ -153,14 +153,14 @@
 .like-count {
     display: flex;
     align-items: center;
-    margin-left: 8px; /* Adjust margin as needed for spacing */
+    margin-left: 8px;
     font-size: 14px;
-    color: #777; /* Adjust color to match your design */
+    color: #777;
 }
 
 .like-count::before {
-    content: '\2665'; /* Unicode for heart symbol (change to an icon or emoji of your choice) */
-    margin-right: 4px; /* Adjust spacing between icon and text */
+    content: '\2665';
+    margin-right: 4px;
 }
 
 

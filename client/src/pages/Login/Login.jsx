@@ -1,13 +1,11 @@
-// import { useForm } from '../../hooks/useForm';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../context/AuthContext';
-// import * as userService from '../../services/userService';
 
 import './Login.css'
 
-//Upgrade
+
 const LoginFormKeys = {
     Email: 'email',
     Password: 'password'
@@ -40,30 +38,11 @@ export default function Login() {
                 password: values[LoginFormKeys.Password],
             });
 
-            // Serialize and store the user data after successful login
-            // localStorage.setItem('user', userService.serializeUser(user));
-
             navigate('/');
         } catch (error) {
             console.log(error);
         }
     };
-
-    //With useForm
-    // const loginSubmitHandler = async (data) => {
-    //     try{
-    //         const user = await login(data);
-    //         console.log(user);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-
-    // const { values, onChange, onSubmit } = useForm(loginSubmitHandler,{ // Custom Hook -> controlled form (see bellow inputs)
-    //     //When mount those are the initial values
-    //     [LoginFormKeys.Email]: '',
-    //     [LoginFormKeys.Password]: '',
-    // });
 
     return (
         <div className="login-container">

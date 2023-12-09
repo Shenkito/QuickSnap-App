@@ -1,60 +1,52 @@
-/* ProfilePage.css */
-
-/* Styles for the profile container */
 .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    /* background-color: #f2f5f8; Match with your app's color scheme */
-  }
-  
-  /* Styles for the profile card */
-  .profile-card {
-    max-width: 500px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    margin: 20px;
-    text-align: center;
-  }
-  
-  /* Styles for the profile header */
-  .profile-header {
-    margin-bottom: 20px;
-  }
-  
-  .profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-  }
-  
-  .profile-header h2 {
-    margin-bottom: 5px;
-    font-size: 32px;
-    color: #333;
-  }
-  
-  .email {
-    font-size: 16px;
-    color: #888;
-  }
-  
-  /* Styles for the profile details section */
-  .profile-details h3 {
-    margin-bottom: 15px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .profile-details p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #555;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-card {
+  max-width: 500px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 20px;
+  text-align: center;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.profile-header h2 {
+  margin-bottom: 5px;
+  font-size: 32px;
+  color: #333;
+}
+
+.email {
+  font-size: 16px;
+  color: #888;
+}
+
+.profile-details h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-details p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
