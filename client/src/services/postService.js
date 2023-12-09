@@ -49,7 +49,7 @@ export const create = async (postData) => {
         headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken, // Include the access token in the header
-
+            
         },
         body: JSON.stringify(postData),
     });
@@ -77,9 +77,37 @@ export const update = async (postData, postId) => {
         headers: {
             'Content-Type': 'application/json',
             'X-Authorization': accessToken, // Include the access token in the header
-
+            
         },
         body: JSON.stringify(postData),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to create post');
+    }
+
+    const result = await response.json();
+    return result;
+
+};
+
+export const remove = async (postId) => {
+    const storedUser = getStoredUser(); // Retrieve user data containing the access token
+
+    if (!storedUser || !storedUser.accessToken) {
+        throw new Error('Access token not found');
+    }
+
+    const { accessToken } = storedUser;
+
+    const response = await fetch(`${baseUrl}/posts/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': accessToken, // Include the access token in the header
+            
+        },
+        body: JSON.stringify(),
     });
 
     if (!response.ok) {
