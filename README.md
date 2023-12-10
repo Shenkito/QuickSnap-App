@@ -9,7 +9,7 @@ The purpose of the app is project for course ReactJS in SoftUni.
 ### Features
 
 - **User Authentication:** Secure registration, login, and logout functionalities.
-- **Create, Edit, Dekete Posts:** Authenticated users can create new posts with images, titles, and content, edit them and delete them.
+- **Create, Edit, Delete Posts:** Authenticated users can create new posts with images, titles, and content, edit them and delete them.
 - **View Posts:** Browse through all existing posts conveniently.
 - **Commenting:** Interact by commenting on posts and view existing comments.
 - **Profile:** User profile details including username, email, bio, and profile image.
