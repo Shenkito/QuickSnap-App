@@ -2,7 +2,7 @@
 
 ## Introduction
 
-QuickSnap is a web application that enables users to create, view, comment on, and manage posts. This app is built using React as the primary framework along with React Router for seamless navigation between pages.
+QuickSnap is a web application that enables users to create, view, comment on, and manage posts. This app is built using React as the primary library along with React Router for seamless navigation between pages.
 
 The purpose of the app is project for course ReactJS in SoftUni.
 
