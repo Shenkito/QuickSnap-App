@@ -14,7 +14,7 @@ export const getAll = async () => {
         return posts;
 
     } catch (error) {
-        alert(error)
+
     }
 };
 
