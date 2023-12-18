@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import * as commentService from '../../services/commentService';
 import * as postService from '../../services/postService';
+import * as likeService from '../../services/likeService';
 
 import './PostCard.css';
 
@@ -15,7 +16,6 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
     const { user } = useAuth();
     const navigate = useNavigate()
     const [expanded, setExpanded] = useState(false);
-    const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState({
         [commentFormKeys.Comment]: '',
@@ -28,25 +28,49 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         content: '',
         imageUrl: '',
     });
+    const [likes, setLikes] = useState([]);
+    const [newLike, setNewLike] = useState({
+        Author: user ? user.username : '',
+        PostId: _id,
+    });
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             if (expanded) {
 
-                const fetchedComments = await commentService.getByPostId(_id);
-                setComments(fetchedComments);
+                try {
+                    // Fetch comments
+                    const fetchedComments = await commentService.getByPostId(_id);
+                    setComments(fetchedComments);
+
+                    // Fetch likes
+                    const fetchedLikes = await likeService.getByPostId(_id);
+                    setLikes(fetchedLikes);
+                } catch (error) {
+                    alert(error);
+                }
             }
 
         }
         fetchData();
-    }, [expanded]); // Or [] if effect doesn't need props or state
+    }, [expanded, _id]); // Or [] if effect doesn't need props or state
 
     const toggleExpand = () => {
         setExpanded(!expanded);
     };
 
-    const likeClickHandler = () => {
-        setLiked(!liked);
+    const likeClickHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const currLike = await likeService.like(newLike)
+            setLikes([...likes, currLike]);
+            setNewLike({ ...newLike });
+            setLiked(!liked)
+        } catch (error) {
+            alert(error)
+        }
     };
 
     const inputChangeHandler = (e, type) => {
@@ -82,7 +106,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
             const post = await postService.getOne(_id)
 
             setPostData(post);
-            setShowEditMode(true)
+            setShowEditMode((prevEditMode) => !prevEditMode);
         } catch (error) {
             alert(error)
         }
@@ -118,6 +142,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
             try {
                 const post = await postService.update(postData, _id);
                 updateEditPostHandler(post)
+                setShowEditMode(false)
             } catch (error) {
                 alert(error)
             }
@@ -248,7 +273,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                             </button>}
 
                         </div>
-                        <span className="like-count">'Display likes here'</span>
+                        <span className="like-count">{likes.length} {likes.length === 1 ? 'like' : 'likes'}</span>
                     </div>
                 )}
             </div>
