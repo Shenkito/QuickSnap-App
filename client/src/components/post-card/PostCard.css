@@ -163,5 +163,27 @@
     margin-right: 4px;
 }
 
+/* Edit and delete buttons for comments */
+.comment-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
 
+.edit-comment-button,
+.delete-comment-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    color: white;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
+.edit-comment-button:hover,
+.delete-comment-button:hover {
+    background-color: cornflowerblue;
+}
