@@ -32,21 +32,27 @@ export default function Posts() {
         fetchPosts();
     }, []);
 
-    const updateEditPostHandler = (post) => {
-        const old = posts.filter(oldPost => oldPost._id !== post._id)
-        setPosts([...old, post])
-    }
-
-    // const updateDeletePostHandler = (post) => {
-    //     setPosts(oldPosts => oldPosts.filter(currPost => currPost._id !== post._id));
-    // };
-
+    const updateDeletePostHandler = (postId) => {
+        setPosts(prevPosts => prevPosts.filter(post => post._id !== postId));
+    };
+    
+    const updateEditPostHandler = (updatedPost) => {
+        setPosts(prevPosts => {
+            const updatedPosts = prevPosts.map(post => {
+                if (post._id === updatedPost._id) {
+                    return updatedPost;
+                }
+                return post;
+            });
+            return updatedPosts;
+        });
+    };
     return (
         <div className="posts-wrapper">
             <div className="post-cards">
                 {Array.isArray(posts) && posts.length > 0 ? (
                     posts.map((post) => (
-                        <PostCard key={post._id} {...post} updateEditPostHandler={updateEditPostHandler} //updateDeletePostHandler={updateDeletePostHandler}
+                        <PostCard key={post._id} {...post} updateEditPostHandler={updateEditPostHandler} updateDeletePostHandler={updateDeletePostHandler}
                         // key={post._id} // Assuming post._id is the unique identifier
                         // imageUrl={post.imageUrl}
                         // title={post.title}
