@@ -152,17 +152,30 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
     const onClickDeleteHandler = async (e) => {
         e.preventDefault();
 
-        const hasConfirmed = confirm(`Do you want to delete ${title} ?`)
+        const hasConfirmed = confirm(`Do you want to delete ${title} ?`);
 
         if (hasConfirmed) {
-
             try {
-                const post = await postService.remove(_id);
-                // updateDeletePostHandler(post)
-                navigate('/posts')
+                await postService.remove(_id);
+                updateDeletePostHandler(_id); // Assuming _id is the unique identifier for the post
             } catch (error) {
-                alert(error)
+                alert(error);
             }
+        }
+    };
+
+    const onClickDeleteComment = async (comment) => {
+        const hasConfirmed = confirm('Do you want to delete this comment ?');
+
+        if (hasConfirmed) {
+            try {
+                await commentService.deleteComment(comment._id)
+                setComments(prevComments => prevComments.filter(c => c._id !== comment._id));
+            } catch (error) {
+                alert(error);
+            }
+        } else {
+            alert('Deletion canceled')
         }
     }
 
@@ -200,7 +213,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                             <div className="edit-mode-body">
                                 <form onSubmit={onClickSaveEditHandler}>
                                     <div className="form-group">
-                                        <label>Title:</label>
+                                        <label htmlFor="title">Title:</label>
                                         <input
                                             type="text"
                                             name="title"
@@ -209,7 +222,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label>Content:</label>
+                                        <label htmlFor="content">Content:</label>
                                         <textarea
                                             name="content"
                                             value={postData.content}
@@ -217,7 +230,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                         ></textarea>
                                     </div>
                                     <div className="form-group">
-                                        <label>ImageUrl:</label>
+                                        <label htmlFor="imageUrl">ImageUrl:</label>
                                         <input
                                             type="text"
                                             name="imageUrl"
@@ -260,6 +273,13 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                     {comments.map((comment) => (
                                         <li key={comment._id} className="comment">
                                             {comment.comment} - {comment.Author}
+
+                                            {user && comment.Author === user.username && (
+                                                <div className="comment-buttons">
+                                                    <button className="edit-comment-button" onClick={() => handleEditComment(comment)}>Edit Comment</button>
+                                                    <button className="delete-comment-button" onClick={() => onClickDeleteComment(comment)}>Delete Comment</button>
+                                                </div>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
