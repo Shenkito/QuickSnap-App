@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,6 +34,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         PostId: _id,
     });
     const [liked, setLiked] = useState(false);
+    const [editedComment, setEditedComment] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -179,6 +180,41 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         }
     }
 
+    const handleEditComment = (comment) => {
+        setEditedComment(comment);
+    };
+
+    const cancelEditComment = () => {
+        setEditedComment(null);
+    };
+
+    const submitEditedComment = async () => {
+        if (!editedComment || !editedComment._id) {
+            return;
+        }
+
+        try {
+            await commentService.updateComment(editedComment._id, editedComment);
+            const updatedComments = comments.map((comment) =>
+                comment._id === editedComment._id ? editedComment : comment
+            );
+            setComments(updatedComments);
+            setEditedComment(null);
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    const handleEditedCommentChange = (e, key) => {
+        if (!editedComment) {
+            return;
+        }
+        setEditedComment({
+            ...editedComment,
+            [key]: e.target.value
+        });
+    };
+
     return (
         <div className="col">
             <div className={`card ${expanded ? 'expanded' : ''}`}>
@@ -272,13 +308,32 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                                 <ul className="comment-list">
                                     {comments.map((comment) => (
                                         <li key={comment._id} className="comment">
-                                            {comment.comment} - {comment.Author}
+                                            {editedComment && editedComment._id === comment._id ? (
+                                                <>
+                                                    <textarea
+                                                        className="comment-edit-input"
+                                                        id="comment-edit-input"
+                                                        name="comment-edit-input"
+                                                        rows="3"
+                                                        value={editedComment.comment}
+                                                        onChange={(e) => handleEditedCommentChange(e, 'comment')}
+                                                    ></textarea>
+                                                    <div className="comment-buttons">
+                                                        <button className="submit-edited-comment-button" onClick={submitEditedComment}>Save</button>
+                                                        <button className="cancel-edit-comment-button" onClick={cancelEditComment}>Cancel</button>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {comment.comment} - {comment.Author}
 
-                                            {user && comment.Author === user.username && (
-                                                <div className="comment-buttons">
-                                                    <button className="edit-comment-button" onClick={() => handleEditComment(comment)}>Edit Comment</button>
-                                                    <button className="delete-comment-button" onClick={() => onClickDeleteComment(comment)}>Delete Comment</button>
-                                                </div>
+                                                    {user && comment.Author === user.username && (
+                                                        <div className="comment-buttons">
+                                                            <button className="edit-comment-button" onClick={() => handleEditComment(comment)}>Edit Comment</button>
+                                                            <button className="delete-comment-button" onClick={() => onClickDeleteComment(comment)}>Delete Comment</button>
+                                                        </div>
+                                                    )}
+                                                </>
                                             )}
                                         </li>
                                     ))}
