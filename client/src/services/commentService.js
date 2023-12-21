@@ -90,3 +90,33 @@ export const deleteComment = async (commentId) => {
         throw new Error('Error deleting comment: ' + error.message);
     }
 };
+
+export const updateComment = async (commentId, updatedCommentData) => {
+    const storedUser = getStoredUser();
+
+    if (!storedUser || !storedUser.accessToken) {
+        throw new Error('Access token not found');
+    }
+
+    const { accessToken } = storedUser;
+
+    try {
+        const response = await fetch(`${baseUrl}/comments/${commentId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Authorization': accessToken,
+            },
+            body: JSON.stringify(updatedCommentData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update comment');
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        throw new Error('Error updating comment: ' + error.message);
+    }
+};
