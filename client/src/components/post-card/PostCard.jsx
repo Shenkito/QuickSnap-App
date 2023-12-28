@@ -65,12 +65,27 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
         e.preventDefault();
 
         try {
-            const currLike = await likeService.like(newLike)
-            setLikes([...likes, currLike]);
-            setNewLike({ ...newLike });
-            setLiked(!liked)
+            if (!liked) {
+                const currLike = await likeService.like(newLike);
+                setLikes([...likes, currLike]);
+                setLiked(true);
+            } else {
+                // Find the index of the current user's like in the likes array
+                const userLikeIndex = likes.findIndex(
+                    (like) => like.Author === newLike.Author && like.PostId === newLike.PostId
+                );
+
+                if (userLikeIndex !== -1) {
+                    // Get the ID of the like to be removed
+                    const likeIdToRemove = likes[userLikeIndex]._id;
+                    await likeService.unlike(likeIdToRemove);
+                    const updatedLikes = likes.filter((_, index) => index !== userLikeIndex);
+                    setLikes(updatedLikes);
+                    setLiked(false);
+                }
+            }
         } catch (error) {
-            alert(error)
+            alert(error);
         }
     };
 
