@@ -48,6 +48,11 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
                     // Fetch likes
                     const fetchedLikes = await likeService.getByPostId(_id);
                     setLikes(fetchedLikes);
+
+                    const userLikedPost = fetchedLikes.some(
+                        (like) => like.Author === user?.username && like.PostId === _id
+                    );
+                    setLiked(userLikedPost);
                 } catch (error) {
                     alert(error);
                 }
@@ -55,7 +60,7 @@ export default function PostCard({ imageUrl, title, content, Author, _ownerId, _
 
         }
         fetchData();
-    }, [expanded, _id]); // Or [] if effect doesn't need props or state
+    }, [expanded, _id, user?.username]); // Or [] if effect doesn't need props or state
 
     const toggleExpand = () => {
         setExpanded(!expanded);
