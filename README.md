@@ -18,22 +18,22 @@ QuickSnap is a web application that enables users to create, view, comment/like,
 ## Screenshots
 
 ### Login Page
-![Login Page](https://i.ibb.co/Y7Hk4dt/Quick-Snap-App-Login-Page.png)
+![Login Page](https://i.ibb.co/Y7Hk4dt/Quick-Snap-App-Login-Page.PNG)
 
 ### Sign Up Page
-![Sign Up Page](https://i.ibb.co/3zX058L/Quick-Snap-App-Signup-Page.png)
+![Sign Up Page](https://i.ibb.co/3zX058L/Quick-Snap-App-Signup-Page.PNG)
 
 ### Home Page
-![Home Page](https://i.ibb.co/dmdbqsB/Quick-Snap-App-Home-Page.png)
+![Home Page](https://i.ibb.co/dmdbqsB/Quick-Snap-App-Home-Page.PNG)
 
 ### Profile Page
-![Profile Page](https://i.ibb.co/Z2Zbp6Y/Quick-Snap-App-Profile-Page.png)
+![Profile Page](https://i.ibb.co/Z2Zbp6Y/Quick-Snap-App-Profile-Page.PNG)
 
 ### All Posts Page
-![All Posts Page](https://i.ibb.co/MnvVmnb/Quick-Snap-App-All-Posts-Page.png)
+![All Posts Page](https://i.ibb.co/MnvVmnb/Quick-Snap-App-All-Posts-Page.PNG)
 
 ### Add Post Page
-![Add Post Page](https://i.ibb.co/K5WjRgk/Quick-Snap-App-Add-Post-Page.png)
+![Add Post Page](https://i.ibb.co/K5WjRgk/Quick-Snap-App-Add-Post-Page.PNG)
 
 
 ### Installation
