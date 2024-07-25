@@ -27,7 +27,7 @@ QuickSnap is a web application that enables users to create, view, comment/like,
 ![Home Page](https://i.ibb.co/dmdbqsB/Quick-Snap-App-Home-Page.PNG)
 
 ### Profile Page
-![Profile Page](https://i.ibb.co/Z2Zbp6Y/Quick-Snap-App-Profile-Page.PNG)
+![Profile Page](https://i.ibb.co/Z2Zbp6Y/Quick-Snap-App-Profile-Page.png)
 
 ### All Posts Page
 ![All Posts Page](https://i.ibb.co/MnvVmnb/Quick-Snap-App-All-Posts-Page.PNG)
