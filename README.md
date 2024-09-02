@@ -33,7 +33,7 @@ QuickSnap is a web application that enables users to create, view, comment/like,
 ![All Posts Page](https://i.ibb.co/MnvVmnb/Quick-Snap-App-All-Posts-Page.PNG)
 
 ### Add Post Page
-![Add Post Page](https://i.ibb.co/K5WjRgk/Quick-Snap-App-Add-Post-Page.PNG)
+![Add Post Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-AddPostPage.png?raw=true)
 
 
 ### Installation
