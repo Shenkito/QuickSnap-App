@@ -18,19 +18,19 @@ QuickSnap is a web application that enables users to create, view, comment/like,
 ## Screenshots
 
 ### Login Page
-![Login Page](https://i.ibb.co/Y7Hk4dt/Quick-Snap-App-Login-Page.PNG)
+![Login Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-LoginPage.png?raw=true)
 
 ### Sign Up Page
-![Sign Up Page](https://i.ibb.co/3zX058L/Quick-Snap-App-Signup-Page.PNG)
+![Sign Up Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-SignupPage.png?raw=true)
 
 ### Home Page
-![Home Page](https://i.ibb.co/dmdbqsB/Quick-Snap-App-Home-Page.PNG)
+![Home Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-HomePage.png?raw=true)
 
 ### Profile Page
-![Profile Page](https://i.ibb.co/Z2Zbp6Y/Quick-Snap-App-Profile-Page.PNG)
+![Profile Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-ProfilePage.png?raw=true)
 
 ### All Posts Page
-![All Posts Page](https://i.ibb.co/MnvVmnb/Quick-Snap-App-All-Posts-Page.PNG)
+![All Posts Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-AllPostsPage.png?raw=true)
 
 ### Add Post Page
 ![Add Post Page](https://github.com/Shenkito/QuickSnap-App/blob/main/Quick-Snap-App/Quick-Snap-App-AddPostPage.png?raw=true)
